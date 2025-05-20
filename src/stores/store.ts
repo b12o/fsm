@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { defineStore } from 'pinia'
 
@@ -10,8 +10,9 @@ export const useStore = defineStore('main', () => {
   const applicationTitle = 'FSM'
   const applicationVersion = 'v0.0.1'
 
-  const sidebar = {
+  const sidebar = reactive({
     overviewLabel: 'Übersicht',
+    currentView: '',
     navItems: [
       {
         title: 'Fahrschüler',
@@ -39,9 +40,15 @@ export const useStore = defineStore('main', () => {
         },
       },
     },
+  })
+
+  function sidebarNavigateTo(route: string) {
+    router.push({ name: route })
+    const found = sidebar.navItems.find((x) => x.route === route)
+    sidebar.currentView = found?.title || ''
   }
   function navigateTo(route: string) {
-    router.push(route)
+    router.push({ name: route })
   }
 
   const count = ref(0)
@@ -55,6 +62,7 @@ export const useStore = defineStore('main', () => {
     applicationTitle,
     applicationVersion,
     sidebar,
+    sidebarNavigateTo,
     navigateTo,
     count,
     doubleCount,

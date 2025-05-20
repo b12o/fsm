@@ -56,7 +56,7 @@ const store = useStore()
             <SidebarMenuButton
               as-child
               class="h-10 mt-2 text-base"
-              @click="store.navigateTo(item.route)"
+              @click="store.sidebarNavigateTo(item.route)"
             >
               <span>
                 <component :is="item.icon" />
