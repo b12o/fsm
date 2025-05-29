@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ChevronsUpDown, LogOut, GalleryVerticalEnd } from 'lucide-vue-next'
+import { Separator } from '@/components/ui/separator'
 
 import {
   Sidebar,
@@ -23,12 +24,11 @@ import {
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 
 import { useStore } from '@/stores/store'
-
 const store = useStore()
 </script>
 
 <template>
-  <Sidebar variant="floating">
+  <Sidebar variant="floating" collapsible="icon">
     <SidebarHeader>
       <SidebarMenu>
         <SidebarMenuItem>
@@ -66,6 +66,7 @@ const store = useStore()
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroup>
+      <Separator />
     </SidebarContent>
     <SidebarFooter>
       <SidebarMenu>
@@ -77,7 +78,9 @@ const store = useStore()
                   <AvatarFallback>{{ store.sidebar.footerInfo.initials }}</AvatarFallback>
                 </Avatar>
                 <div class="grid flex-1 text-left leading-tight">
-                  <span class="truncate font-semibold">{{ store.sidebar.footerInfo.username }}</span>
+                  <span class="truncate font-semibold">{{
+                    store.sidebar.footerInfo.username
+                  }}</span>
                   <span class="truncate text-xs">{{ store.sidebar.footerInfo.email }}</span>
                 </div>
                 <ChevronsUpDown />
