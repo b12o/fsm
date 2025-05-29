@@ -1,7 +1,4 @@
-import mockStudents from '@/stores/mockStudents'
-import mockInstructors from '@/stores/mockInstructors'
-
-interface Student {
+export interface Student {
   id: string
   firstName: string
   lastName: string
@@ -17,12 +14,9 @@ interface Student {
   preferredVehicleId: string
 }
 
-interface Instructor {
+export interface Instructor {
   id: string
   firstName: string
   lastName: string
   email: string
 }
-
-export const students: Student[] = mockStudents
-export const instructors: Instructor[] = mockInstructors

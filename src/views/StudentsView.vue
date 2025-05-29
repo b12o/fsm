@@ -1,44 +1,22 @@
 <script setup lang="ts">
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
 import mockStudents from '@/stores/mockStudents'
+import { onMounted, ref } from 'vue'
+import type { Student } from '@/interfaces'
+import { columns } from '@/components/students/columns'
+import DataTable from '@/components/students/DataTable.vue'
+
+const data = ref<Student[]>([])
+async function getData(): Promise<Student[]> {
+  await new Promise((resolve) => setTimeout(resolve, 1000)) // TODO: remove
+  return mockStudents
+}
+onMounted(async () => {
+  data.value = await getData()
+})
 </script>
 
 <template>
-  <Table>
-    <TableHeader>
-      <TableRow>
-        <TableHead>Vorname</TableHead>
-        <TableHead>Nachname</TableHead>
-        <TableHead>Email</TableHead>
-        <TableHead>Telefonnummer</TableHead>
-        <TableHead>Status</TableHead>
-        <TableHead>Typ</TableHead>
-        <TableHead>BF17</TableHead>
-        <TableHead>Stunden</TableHead>
-        <TableHead>Saldo</TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
-      <TableRow v-for="student in mockStudents" :key="student.id">
-        <TableCell>{{ student.firstName }}</TableCell>
-        <TableCell>{{ student.lastName }}</TableCell>
-        <TableCell>{{ student.email }}</TableCell>
-        <TableCell>{{ student.phoneNumber }}</TableCell>
-        <TableCell>{{ student.status }}</TableCell>
-        <TableCell>{{ student.licenseType }}</TableCell>
-        <TableCell>{{ student.isBf17 }}</TableCell>
-        <TableCell>{{ student.numLessons }}</TableCell>
-        <TableCell>{{ student.balance }}</TableCell>
-      </TableRow>
-    </TableBody>
-  </Table>
+  <DataTable :columns="columns" :data="data" />
 </template>
 
 <style scoped></style>

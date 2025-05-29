@@ -10,17 +10,18 @@ import {
 } from '@/components/ui/breadcrumb'
 
 import { useStore } from '@/stores/store'
+import TheModeSwitch from './TheModeSwitch.vue'
 
 const store = useStore()
 </script>
 
 <template>
   <header
-    class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12"
+    class="flex h-16 shrink-0 items-center transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12"
   >
-    <div class="flex items-center gap-2 px-4">
+    <div class="flex items-center gap-2 px-4 w-full">
       <SidebarTrigger class="-ml-1" />
-      <Separator orientation="vertical" class="mr-2 h-4"/>
+      <Separator orientation="vertical" class="mr-2 h-4" />
       <Breadcrumb class="mt-0.5">
         <BreadcrumbList>
           <BreadcrumbItem class="hidden md:block"> Übersicht </BreadcrumbItem>
@@ -30,6 +31,7 @@ const store = useStore()
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+      <TheModeSwitch class="ml-auto mr-2" />
     </div>
   </header>
 </template>
