@@ -31,7 +31,7 @@ const store = useStore()
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <TheModeSwitch class="ml-auto mr-2" />
+      <TheModeSwitch class="ml-auto mr-8" />
     </div>
   </header>
 </template>

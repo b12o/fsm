@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import mockStudents from '@/stores/mockStudents'
 import { onMounted, ref } from 'vue'
 import type { Student } from '@/interfaces'
-import { columns } from '@/components/students/columns'
-import DataTable from '@/components/students/DataTable.vue'
+import { StudentColumns } from '@/columns'
+import DataTable from '@/components/ui/data-table.vue'
+import mockStudents from '@/stores/mockStudents'
 
 const data = ref<Student[]>([])
 async function getData(): Promise<Student[]> {
-  await new Promise((resolve) => setTimeout(resolve, 1000)) // TODO: remove
+  await new Promise((resolve) => setTimeout(resolve, 500)) // TODO: remove
   return mockStudents
 }
 onMounted(async () => {
@@ -16,7 +16,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <DataTable :columns="columns" :data="data" />
+  <DataTable :columns="StudentColumns" :data="data" />
 </template>
 
 <style scoped></style>

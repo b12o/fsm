@@ -2,8 +2,9 @@ import { h } from 'vue'
 import { Check } from 'lucide-vue-next'
 import type { ColumnDef } from '@tanstack/vue-table'
 import type { Student } from '@/interfaces'
+import type { Instructor } from '@/interfaces'
 
-export const columns: ColumnDef<Student>[] = [
+export const StudentColumns: ColumnDef<Student>[] = [
   {
     accessorKey: 'firstName',
     header: () => h('div', { class: 'text-left' }, 'Vorname'),
@@ -57,6 +58,30 @@ export const columns: ColumnDef<Student>[] = [
         { class: 'font-medium' },
         row.getValue('status') === 'active' ? 'aktiv' : 'inaktiv',
       )
+    },
+  },
+]
+
+export const InstructorColumns: ColumnDef<Instructor>[] = [
+  {
+    accessorKey: 'firstName',
+    header: () => h('div', { class: 'text-left' }, 'Vorname'),
+    cell: ({ row }) => {
+      return h('div', { class: 'font-medium' }, row.getValue('firstName'))
+    },
+  },
+  {
+    accessorKey: 'lastName',
+    header: () => h('div', { class: 'text-left' }, 'Nachname'),
+    cell: ({ row }) => {
+      return h('div', { class: 'font-medium' }, row.getValue('lastName'))
+    },
+  },
+  {
+    accessorKey: 'email',
+    header: () => h('div', { class: 'text-left' }, 'Email'),
+    cell: ({ row }) => {
+      return h('div', { class: 'font-medium' }, row.getValue('email'))
     },
   },
 ]
