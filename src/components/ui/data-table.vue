@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="TData, TValue">
 import { onMounted, ref } from 'vue'
-import type { ColumnDef, SortingState } from '@tanstack/vue-table'
+import type { ColumnDef, Row, SortingState } from '@tanstack/vue-table'
 import { ChevronLeft, ChevronRight, Search } from 'lucide-vue-next'
 import {
   FlexRender,
@@ -21,6 +21,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { valueUpdater } from '@/lib/utils'
+import type { Student } from '@/interfaces'
 
 const props = defineProps<{
   columns: ColumnDef<TData, TValue>[]
@@ -52,6 +53,11 @@ const table = useVueTable({
   globalFilterFn: 'includesString',
   onSortingChange: (updateOrValue) => valueUpdater(updateOrValue, sorting),
 })
+
+function handleClickRow(row: Row<TData>) {
+  const selectedStudent = row.original as Student
+  console.log(selectedStudent.id)
+}
 
 onMounted(() => {
   document.getElementById('data-table-search-input')?.focus()
@@ -89,6 +95,7 @@ onMounted(() => {
             v-for="row in table.getRowModel().rows"
             :key="row.id"
             :data-state="row.getIsSelected() ? 'selected' : 'undefined'"
+            @click="handleClickRow(row)"
           >
             <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
               <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
