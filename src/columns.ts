@@ -1,27 +1,58 @@
 import { h } from 'vue'
-import { Check } from 'lucide-vue-next'
+import { Check, ArrowUpDown } from 'lucide-vue-next'
 import type { ColumnDef } from '@tanstack/vue-table'
 import type { Student } from '@/interfaces'
 import type { Instructor } from '@/interfaces'
+import { Button } from '@/components/ui/button'
 
 export const StudentColumns: ColumnDef<Student>[] = [
   {
     accessorKey: 'firstName',
-    header: () => h('div', { class: 'text-left' }, 'Vorname'),
+    header: ({ column }) => {
+      return h(
+        Button,
+        {
+          variant: 'ghost',
+          class: '-ml-3',
+          onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+        },
+        () => ['Vorname', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+      )
+    },
     cell: ({ row }) => {
       return h('div', { class: 'font-medium' }, row.getValue('firstName'))
     },
   },
   {
     accessorKey: 'lastName',
-    header: () => h('div', { class: 'text-left' }, 'Nachname'),
+    header: ({ column }) => {
+      return h(
+        Button,
+        {
+          variant: 'ghost',
+          class: '-ml-3',
+          onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+        },
+        () => ['Nachname', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+      )
+    },
     cell: ({ row }) => {
       return h('div', { class: 'font-medium' }, row.getValue('lastName'))
     },
   },
   {
     accessorKey: 'email',
-    header: () => h('div', { class: 'text-left' }, 'Email'),
+    header: ({ column }) => {
+      return h(
+        Button,
+        {
+          variant: 'ghost',
+          class: '-ml-3',
+          onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+        },
+        () => ['Email', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+      )
+    },
     cell: ({ row }) => {
       return h('div', { class: 'font-medium' }, row.getValue('email'))
     },
@@ -65,21 +96,51 @@ export const StudentColumns: ColumnDef<Student>[] = [
 export const InstructorColumns: ColumnDef<Instructor>[] = [
   {
     accessorKey: 'firstName',
-    header: () => h('div', { class: 'text-left' }, 'Vorname'),
+    header: ({ column }) => {
+      return h(
+        Button,
+        {
+          variant: 'ghost',
+          class: '-ml-3',
+          onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+        },
+        () => ['Vorname', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+      )
+    },
     cell: ({ row }) => {
       return h('div', { class: 'font-medium' }, row.getValue('firstName'))
     },
   },
   {
     accessorKey: 'lastName',
-    header: () => h('div', { class: 'text-left' }, 'Nachname'),
+    header: ({ column }) => {
+      return h(
+        Button,
+        {
+          variant: 'ghost',
+          class: '-ml-3',
+          onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+        },
+        () => ['Nachname', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+      )
+    },
     cell: ({ row }) => {
       return h('div', { class: 'font-medium' }, row.getValue('lastName'))
     },
   },
   {
     accessorKey: 'email',
-    header: () => h('div', { class: 'text-left' }, 'Email'),
+    header: ({ column }) => {
+      return h(
+        Button,
+        {
+          variant: 'ghost',
+          class: '-ml-3',
+          onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+        },
+        () => ['Email', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+      )
+    },
     cell: ({ row }) => {
       return h('div', { class: 'font-medium' }, row.getValue('email'))
     },
