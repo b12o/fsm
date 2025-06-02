@@ -6,6 +6,7 @@ import {
   FlexRender,
   getCoreRowModel,
   getPaginationRowModel,
+  getFilteredRowModel,
   getSortedRowModel,
   useVueTable,
 } from '@tanstack/vue-table'
@@ -17,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { valueUpdater } from '@/lib/utils'
 
@@ -48,11 +50,20 @@ const table = useVueTable({
   getCoreRowModel: getCoreRowModel(),
   getPaginationRowModel: getPaginationRowModel(),
   getSortedRowModel: getSortedRowModel(),
+  getFilteredRowModel: getFilteredRowModel(),
+  globalFilterFn: 'includesString',
   onSortingChange: (updateOrValue) => valueUpdater(updateOrValue, sorting),
 })
 </script>
 
 <template>
+  <div class="flex items-center py-4">
+    <Input
+      class="max-w-sm"
+      placeholder="Suche"
+      @update:model-value="table.setGlobalFilter($event)"
+    />
+  </div>
   <div class="border rounded-md">
     <Table>
       <TableHeader>
