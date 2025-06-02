@@ -1,7 +1,7 @@
 <script setup lang="ts" generic="TData, TValue">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import type { ColumnDef, SortingState } from '@tanstack/vue-table'
-import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { ChevronLeft, ChevronRight, Search } from 'lucide-vue-next'
 import {
   FlexRender,
   getCoreRowModel,
@@ -26,9 +26,7 @@ const props = defineProps<{
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
 }>()
-
 const sorting = ref<SortingState>([])
-
 const table = useVueTable({
   initialState: {
     pagination: {
@@ -54,12 +52,20 @@ const table = useVueTable({
   globalFilterFn: 'includesString',
   onSortingChange: (updateOrValue) => valueUpdater(updateOrValue, sorting),
 })
+
+onMounted(() => {
+  document.getElementById('data-table-search-input')?.focus()
+})
 </script>
 
 <template>
   <div class="flex items-center py-4">
+    <span class="absolute start-6 flex items-center justify-center px-2">
+      <Search class="size-5 text-muted-foreground" />
+    </span>
     <Input
-      class="max-w-sm"
+      id="data-table-search-input"
+      class="max-w-sm pl-8"
       placeholder="Suche"
       @update:model-value="table.setGlobalFilter($event)"
     />
