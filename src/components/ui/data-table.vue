@@ -21,7 +21,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { valueUpdater } from '@/lib/utils'
-import type { Student } from '@/interfaces'
+import type { ObjectWithId } from '@/interfaces'
 
 const props = defineProps<{
   columns: ColumnDef<TData, TValue>[]
@@ -55,8 +55,8 @@ const table = useVueTable({
 })
 
 function handleClickRow(row: Row<TData>) {
-  const selectedStudent = row.original as Student
-  console.log(selectedStudent.id)
+  const selectedObject = row.original as ObjectWithId
+  console.log(selectedObject.id)
 }
 
 onMounted(() => {

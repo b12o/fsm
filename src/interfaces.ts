@@ -20,3 +20,7 @@ export interface Instructor {
   lastName: string
   email: string
 }
+
+export interface ObjectWithId {
+  id: string
+}
