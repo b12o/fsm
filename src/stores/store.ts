@@ -47,6 +47,7 @@ export const useStore = defineStore('main', () => {
     const found = sidebar.navItems.find((x) => x.route === route)
     sidebar.currentView = found?.title || ''
   }
+
   function navigateTo(route: string) {
     router.push({ name: route })
   }

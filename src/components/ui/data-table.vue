@@ -21,12 +21,14 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { valueUpdater } from '@/lib/utils'
-import type { ObjectWithId } from '@/interfaces'
 
-const props = defineProps<{
+interface Props {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
-}>()
+  rowSelect: (row: Row<TData>) => void
+}
+const props = defineProps<Props>()
+
 const sorting = ref<SortingState>([])
 const table = useVueTable({
   initialState: {
@@ -53,11 +55,6 @@ const table = useVueTable({
   globalFilterFn: 'includesString',
   onSortingChange: (updateOrValue) => valueUpdater(updateOrValue, sorting),
 })
-
-function handleClickRow(row: Row<TData>) {
-  const selectedObject = row.original as ObjectWithId
-  console.log(selectedObject.id)
-}
 
 onMounted(() => {
   document.getElementById('data-table-search-input')?.focus()
@@ -95,7 +92,7 @@ onMounted(() => {
             v-for="row in table.getRowModel().rows"
             :key="row.id"
             :data-state="row.getIsSelected() ? 'selected' : 'undefined'"
-            @click="handleClickRow(row)"
+            @click="rowSelect(row)"
           >
             <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
               <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
