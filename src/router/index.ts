@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import StudentsView from '@/views/StudentsView.vue'
-import Instructorsview from '@/views/InstructorsView.vue'
-import VehiclesView from '@/views/VehiclesView.vue'
+import HomeView from '@/views/HomeView.vue'
+import StudentsOverview from '@/views/StudentsOverview.vue'
+import StudentView from '@/views/StudentView.vue'
+import InstructorsOverview from '@/views/InstructorsOverview.vue'
+import VehiclesOverview from '@/views/VehiclesOverview.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,17 +16,22 @@ const router = createRouter({
     {
       path: '/students',
       name: 'students',
-      component: StudentsView,
+      component: StudentsOverview,
+    },
+    {
+      path: '/student/:studentId',
+      component: StudentView,
+      props: true,
     },
     {
       path: '/instructors',
       name: 'instructors',
-      component: Instructorsview,
+      component: InstructorsOverview,
     },
     {
       path: '/vehicles',
       name: 'vehicles',
-      component: VehiclesView,
+      component: VehiclesOverview,
     },
     {
       path: '/:notFound(.*)',
