@@ -63,7 +63,7 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center py-4">
-    <span class="absolute start-6 flex items-center justify-center px-2">
+    <span class="absolute start-2 flex items-center justify-center px-2">
       <Search class="size-5 text-muted-foreground" />
     </span>
     <Input
