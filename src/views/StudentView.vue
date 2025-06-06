@@ -10,15 +10,27 @@ interface Props {
 const props = defineProps<Props>()
 console.log(props.studentId)
 
-// use vue store for student info instead of passing student Id
-// the row-select script of the students overview should make the API call and store the result in pinia
-// for this component (and child components) to retrieve
+// TODO: use pinia for storing student info when selecting datatable row
+// That way we can retrieve information in child components without having to pass them through
+
+const mockData = {
+  firstName: 'Herbert',
+  lastName: 'Sperbert',
+  email: 'herbert@sperbert.de',
+  phoneNumber: '0177 123 456 78',
+  licenseType: 'manual',
+  instructor: 'David',
+  vehicle: 'Blau',
+  numLessons: 17,
+  balance: '€ 00,00',
+  status: 'active',
+}
 </script>
 
 <template>
-  <InfoBox :id="studentId" />
-  <Separator class="my-4" />
-  <DrivingInfo :id="studentId" />
+  <div class="flex flex-col">
+    <InfoBox :data="mockData" />
+    <Separator class="my-4" />
+    <DrivingInfo class="grow" />
+  </div>
 </template>
-
-<style scoped></style>

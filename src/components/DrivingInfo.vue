@@ -2,6 +2,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { CalendarCheck, ListChecks, NotebookPen } from 'lucide-vue-next'
 import { Card, CardContent } from '@/components/ui/card'
+import DrivingSchedule from '@/components/DrivingSchedule.vue'
 </script>
 
 <template>
@@ -21,9 +22,7 @@ import { Card, CardContent } from '@/components/ui/card'
       </TabsTrigger>
     </TabsList>
     <TabsContent value="plan">
-      <Card>
-        <CardContent>Plan</CardContent>
-      </Card>
+      <DrivingSchedule />
     </TabsContent>
     <TabsContent value="progress">
       <Card>

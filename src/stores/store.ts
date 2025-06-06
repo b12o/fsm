@@ -11,6 +11,7 @@ export const useStore = defineStore('main', () => {
   const applicationVersion = 'v0.0.1'
 
   const sidebar = reactive({
+    isOpen: true,
     overviewLabel: 'Übersicht',
     currentView: '',
     navItems: [
