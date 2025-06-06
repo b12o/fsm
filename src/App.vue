@@ -11,7 +11,7 @@ import SidebarInset from '@/components/ui/sidebar/SidebarInset.vue'
     <TheSidebar />
     <SidebarInset>
       <TheHeader />
-      <div class="flex flex-1 flex-col p-2 pt-0">
+      <div class="flex flex-1 flex-col mr-1.5 mb-2">
         <div class="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min p-4">
           <RouterView />
         </div>
