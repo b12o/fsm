@@ -10,7 +10,7 @@ export interface Student {
   isBf17: boolean
   instructorId: string
   numLessons: number
-  balance: number
+  balance: string
   preferredVehicleId: string
 }
 

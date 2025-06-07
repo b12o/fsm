@@ -1,8 +1,8 @@
-import { ref, computed, reactive } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { defineStore } from 'pinia'
-
 import { GraduationCap, Users, Car } from 'lucide-vue-next'
+import type { Student } from '@/interfaces'
 
 export const useStore = defineStore('main', () => {
   const router = useRouter()
@@ -10,7 +10,7 @@ export const useStore = defineStore('main', () => {
   const applicationTitle = 'FSM'
   const applicationVersion = 'v0.0.1'
 
-  const sidebar = reactive({
+  const sidebar = {
     isOpen: true,
     overviewLabel: 'Übersicht',
     currentView: '',
@@ -41,7 +41,7 @@ export const useStore = defineStore('main', () => {
         },
       },
     },
-  })
+  }
 
   function sidebarNavigateTo(route: string) {
     router.push({ name: route })
@@ -49,15 +49,14 @@ export const useStore = defineStore('main', () => {
     sidebar.currentView = found?.title || ''
   }
 
-  function navigateTo(route: string) {
-    router.push({ name: route })
+  const selectedStudent = ref<Student | null>(null)
+
+  function setSelectedStudent(student: Student) {
+    selectedStudent.value = student
   }
 
-  const count = ref(0)
-
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+  function navigateTo(route: string) {
+    router.push({ name: route })
   }
 
   return {
@@ -66,8 +65,7 @@ export const useStore = defineStore('main', () => {
     sidebar,
     sidebarNavigateTo,
     navigateTo,
-    count,
-    doubleCount,
-    increment,
+    selectedStudent,
+    setSelectedStudent,
   }
 })

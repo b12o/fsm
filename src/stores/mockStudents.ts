@@ -11,7 +11,7 @@ export default [
     isBf17: true,
     instructorId: 'ljulfEag',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -26,7 +26,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -41,7 +41,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -56,7 +56,7 @@ export default [
     isBf17: true,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -71,7 +71,7 @@ export default [
     isBf17: true,
     instructorId: 'ljulfEag',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -86,7 +86,7 @@ export default [
     isBf17: true,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -101,7 +101,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -116,7 +116,7 @@ export default [
     isBf17: false,
     instructorId: 'ljulfEag',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -131,7 +131,7 @@ export default [
     isBf17: true,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -146,7 +146,7 @@ export default [
     isBf17: true,
     instructorId: 'ljulfEag',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -161,7 +161,7 @@ export default [
     isBf17: true,
     instructorId: 'bYRTp8lM',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -176,7 +176,7 @@ export default [
     isBf17: true,
     instructorId: 'bYRTp8lM',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -191,7 +191,7 @@ export default [
     isBf17: false,
     instructorId: 'bYRTp8lM',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -206,7 +206,7 @@ export default [
     isBf17: true,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -221,7 +221,7 @@ export default [
     isBf17: true,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -236,7 +236,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -251,7 +251,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -266,7 +266,7 @@ export default [
     isBf17: true,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -281,7 +281,7 @@ export default [
     isBf17: false,
     instructorId: 'bYRTp8lM',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -296,7 +296,7 @@ export default [
     isBf17: true,
     instructorId: 'bYRTp8lM',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -311,7 +311,7 @@ export default [
     isBf17: false,
     instructorId: 'qt7CYs5f',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -326,7 +326,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -341,7 +341,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -356,7 +356,7 @@ export default [
     isBf17: true,
     instructorId: 'qt7CYs5f',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -371,7 +371,7 @@ export default [
     isBf17: false,
     instructorId: 'qt7CYs5f',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -386,7 +386,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -401,7 +401,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -416,7 +416,7 @@ export default [
     isBf17: false,
     instructorId: 'qt7CYs5f',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -431,7 +431,7 @@ export default [
     isBf17: false,
     instructorId: 'qt7CYs5f',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -446,7 +446,7 @@ export default [
     isBf17: true,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -461,7 +461,7 @@ export default [
     isBf17: false,
     instructorId: '5pRgKEmi',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -476,7 +476,7 @@ export default [
     isBf17: false,
     instructorId: '5pRgKEmi',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -491,7 +491,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -506,7 +506,7 @@ export default [
     isBf17: false,
     instructorId: '5pRgKEmi',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -521,7 +521,7 @@ export default [
     isBf17: true,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -536,7 +536,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -551,7 +551,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -566,7 +566,7 @@ export default [
     isBf17: false,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -581,7 +581,7 @@ export default [
     isBf17: false,
     instructorId: '5pRgKEmi',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
   {
@@ -596,7 +596,7 @@ export default [
     isBf17: true,
     instructorId: '',
     numLessons: 0,
-    balance: 0,
+    balance: '0',
     preferredVehicleId: '',
   },
 ]
