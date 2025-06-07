@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { ref, type ComponentPublicInstance } from 'vue'
 import { ScheduleXCalendar } from '@schedule-x/vue'
 import { createDragAndDropPlugin } from '@schedule-x/drag-and-drop'
 import { createResizePlugin } from '@schedule-x/resize'
-import { createEventModalPlugin } from '@schedule-x/event-modal'
 import { createCurrentTimePlugin } from '@schedule-x/current-time'
 import {
   createCalendar,
@@ -21,9 +21,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 
-import { Button } from '@/components/ui/button'
-
-const eventModal = createEventModalPlugin()
+import { Clock } from 'lucide-vue-next'
 
 // Do not use a ref here, as the calendar instance is not reactive, and doing so might cause issues
 // For updating events, use the events service plugin
@@ -37,7 +35,7 @@ const calendarApp = createCalendar({
     end: '23:00',
   },
   views: [createViewDay(), createViewWeek(), createViewMonthGrid()],
-  plugins: [createDragAndDropPlugin(), createResizePlugin(), createCurrentTimePlugin(), eventModal],
+  plugins: [createDragAndDropPlugin(), createResizePlugin(), createCurrentTimePlugin()],
   weekOptions: {
     nDays: 6,
     gridHeight: 1000,
@@ -74,49 +72,42 @@ const calendarApp = createCalendar({
     },
     onEventClick(calendarEvent) {
       console.log('onEventClick', calendarEvent)
+      openDialog()
     },
   },
 })
+
+const dialogTrigger = ref<ComponentPublicInstance | null>(null)
+
+function openDialog() {
+  dialogTrigger.value?.$el.click()
+}
 </script>
 
 <template>
-  <!--
-	// the initial idea was for clicking the event to open an "edit event" dialog
-	// but in the background the event modal is opened by default anyway, which makes the experience a bit clunky.
-	// the better option is to use the built-in modal, but add an "edit event" button, which opens the dialog.
-	-->
-  <ScheduleXCalendar :calendar-app="calendarApp">
-    <template #eventModal="{ calendarEvent }">
-      <div class="p-4 rounded-xl border border-[#666] bg-[#141218]">
-        <div>
-          {{ calendarEvent.title }}
-        </div>
-
-        <Dialog>
-          <DialogTrigger>
-            <Button variant="outline" class="test">Bearbeiten</Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Test title</DialogTitle>
-              <DialogDescription>Test description</DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
-      </div>
-    </template>
-  </ScheduleXCalendar>
+  <ScheduleXCalendar :calendar-app="calendarApp" />
+  <Dialog>
+    <DialogTrigger ref="dialogTrigger" class="hidden"></DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Matea Miskovic</DialogTitle>
+        <DialogDescription> <Clock :size="15" class="inline" /> 12:00 - 13:20 </DialogDescription>
+      </DialogHeader>
+      Some more stuff here...
+    </DialogContent>
+  </Dialog>
 </template>
 
 <style>
-.test {
-  border: 1px solid white !important;
-}
 .sx-vue-calendar-wrapper {
   width: 100%;
   height: calc(100vh - 20.5rem);
 }
-.sx__event-modal {
-  background-color: transparent !important;
+.sx__current-time-indicator {
+  height: 1px;
+  border: 1px solid white;
+}
+.sx__current-time-indicator::before {
+  background-color: white;
 }
 </style>
