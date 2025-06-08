@@ -7,10 +7,10 @@ import DataTable from '@/components/ui/data-table.vue'
 import mockStudents from '@/stores/mockStudents'
 import type { Student } from '@/interfaces'
 import { StudentColumns } from '@/columns'
-import { useStore } from '@/stores/store'
+//import { useStore } from '@/stores/store'
 
 const router = useRouter()
-const store = useStore()
+// const store = useStore()
 
 const data = ref<Student[]>([])
 async function getData(): Promise<Student[]> {
@@ -20,25 +20,8 @@ async function getData(): Promise<Student[]> {
 
 function selectStudent(row: Row<Student>) {
   const selectedObject = row.original
-  // TODO: HTTP GET /student/<studentId>
-  // then store object in Pinia
-  // let's mock this for now
-  const mockStudent: Student = {
-    id: '123abc',
-    firstName: 'Herbert',
-    lastName: 'Sperbert',
-    email: 'herbert@sperbert.de',
-    phoneNumber: '0177 123 456 78',
-    licenseType: 'manual',
-    instructorId: 'David',
-    preferredVehicleId: 'Blau',
-    numLessons: 17,
-    balance: '€ 00,00',
-    status: 'active',
-    isBf17: false,
-    drivingSchoolId: '123',
-  }
-  store.setSelectedStudent(mockStudent)
+  // TODO: HTTP GET /student/<studentId> and store in pinia using setSelectedStudent()
+  // store.setSelectedStudent()
 
   router.push({
     name: 'student',

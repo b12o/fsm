@@ -49,10 +49,24 @@ export const useStore = defineStore('main', () => {
     sidebar.currentView = found?.title || ''
   }
 
-  const selectedStudent = ref<Student | null>(null)
+  const selectedStudent = ref<Student>({
+    id: '123abc',
+    firstName: 'Herbert',
+    lastName: 'Sperbert',
+    email: 'herbert@sperbert.de',
+    phoneNumber: '0177 123 456 78',
+    licenseType: 'manual',
+    instructorId: 'David',
+    preferredVehicleId: 'Blau',
+    numLessons: 17,
+    balance: '€ 00,00',
+    status: 'active',
+    isBf17: false,
+    drivingSchoolId: '123',
+  })
 
   function setSelectedStudent(student: Student) {
-    selectedStudent.value = student
+	// stub
   }
 
   function navigateTo(route: string) {
