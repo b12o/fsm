@@ -101,13 +101,16 @@ function openDialog() {
 <style>
 .sx-vue-calendar-wrapper {
   width: 100%;
-  height: calc(100vh - 20.5rem);
+  height: calc(100vh - 19.5rem);
 }
 .sx__current-time-indicator {
   height: 1px;
-  border: 1px solid white;
+  border: 1px solid var(--color-neutral-400);
 }
 .sx__current-time-indicator::before {
-  background-color: white;
+  background-color: var(--color-neutral-400);
+}
+.sx__calendar {
+  border: 1px solid var(--color-neutral-700);
 }
 </style>
