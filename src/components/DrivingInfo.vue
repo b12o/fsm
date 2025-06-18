@@ -7,10 +7,11 @@ import DrivingSchedule from '@/components/DrivingSchedule.vue'
 
 <template>
   <Tabs default-value="plan">
+
     <TabsList class="flex justify-between w-full mb-2">
       <TabsTrigger value="plan">
         <CalendarCheck />
-        Plan
+        Fahrplan
       </TabsTrigger>
       <TabsTrigger value="progress">
         <ListChecks />
@@ -21,6 +22,7 @@ import DrivingSchedule from '@/components/DrivingSchedule.vue'
         Protokoll
       </TabsTrigger>
     </TabsList>
+
     <TabsContent value="plan">
       <DrivingSchedule />
     </TabsContent>
@@ -34,6 +36,7 @@ import DrivingSchedule from '@/components/DrivingSchedule.vue'
         <CardContent>Protocol</CardContent>
       </Card>
     </TabsContent>
+
   </Tabs>
 </template>
 
