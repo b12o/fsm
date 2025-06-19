@@ -23,8 +23,8 @@ import {
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 
-import { useStore } from '@/stores/store'
-const store = useStore()
+import { useSidebarStore } from '@/stores/sidebarStore'
+const store = useSidebarStore()
 </script>
 
 <template>

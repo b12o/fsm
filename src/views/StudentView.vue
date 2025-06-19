@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import InfoBox from '@/components/InfoBox.vue'
 import DrivingInfo from '@/components/DrivingInfo.vue'
-import { useStore } from '@/stores/store'
+import { useStudentStore } from '@/stores/studentStore'
 import type { Student } from '@/interfaces'
 
 interface Props {
   studentId: string
 }
 
-const store = useStore()
+const store = useStudentStore()
 
 const props = defineProps<Props>()
 console.log(props.studentId)

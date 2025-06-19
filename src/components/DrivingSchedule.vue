@@ -23,14 +23,14 @@ import {
 } from '@/components/ui/dialog'
 
 import { Clock } from 'lucide-vue-next'
-import { useStore } from '@/stores/store'
+import { useStudentStore } from '@/stores/studentStore'
+
+const store = useStudentStore()
 
 // Do not use a ref here, as the calendar instance is not reactive, and doing so might cause issues
 // For updating events, use the events service plugin
 // taken from https://schedule-x.dev/docs/frameworks/vue
-
-const store = useStore()
-
+const eventsServicePlugin = createEventsServicePlugin()
 const calendarApp = createCalendar({
   isDark: true,
   locale: 'de-DE',
@@ -44,13 +44,13 @@ const calendarApp = createCalendar({
     createDragAndDropPlugin(),
     createResizePlugin(),
     createCurrentTimePlugin(),
-    createEventsServicePlugin(),
+    eventsServicePlugin,
   ],
   weekOptions: {
     nDays: 6,
     gridHeight: 1000,
   },
-  events: store.lessons,
+  events: store.studentLessons,
   callbacks: {
     onClickDateTime(dateTime) {
       addNewEvent(dateTime)
@@ -73,30 +73,45 @@ function addNewEvent(dateTime: string) {
   console.log(dateTime)
   eventDate.value = dateTime.split(' ')[0]
   eventStartTime.value = findClosest10(dateTime.split(' ')[1])
-  eventEndTime.value = calculateEndTime(eventStartTime.value, duration)
-  openDialog()
+  eventEndTime.value = addDuration(eventStartTime.value, duration)
+  eventsServicePlugin.add({
+    title: 'Event 1',
+    start: `${eventDate.value} ${eventStartTime.value}`,
+    end: `${eventDate.value} ${eventEndTime.value}`,
+    id: eventId.value,
+  })
+  // openDialog()
 }
 
 // e.g. 10:38 -> return 10:40
 // e.g. 10:32 -> return 10:30
-function findClosest10(time: string): string {
-  const hour = time.split(':')[0]
-  const minute = Number(time.split(':')[1])
+function findClosest10(timeStr: string): string {
+  const [hours, minutes] = timeStr.split(':').map(Number)
   let delta = Infinity
   let current = Infinity
 
   const tens = [0, 10, 20, 30, 40, 50]
   tens.forEach((item) => {
-    const newDelta = Math.abs(item - minute)
+    const newDelta = Math.abs(item - minutes)
     if (newDelta < delta) {
       current = item
       delta = newDelta
     }
   })
-  return `${hour}:${current.toString().padStart(2, '0')}`
+  return `${hours.toString().padStart(2, '0')}:${current.toString().padStart(2, '0')}`
 }
 
 // addDuration
+function addDuration(timeStr: string, durationMinutes: string | number): string {
+  const [hours, minutes] = timeStr.split(':').map(Number)
+  let totalMinutes = hours * 60 + minutes + Number(durationMinutes)
+  totalMinutes %= 24 * 60
+
+  const newHours = Math.floor(totalMinutes / 60)
+  const newMinutes = totalMinutes % 60
+
+  return `${String(newHours).padStart(2, '0')}:${String(newMinutes).padStart(2, '0')}`
+}
 
 function editEvent() {
   openDialog()
@@ -125,7 +140,7 @@ function openDialog() {
       <DialogHeader>
         <DialogTitle>{{ eventTitle }}</DialogTitle>
         <DialogDescription>
-          <Clock :size="15" class="inline" /> {{ eventStartTime }} - 13:20
+          <Clock :size="15" class="inline" /> {{ eventStartTime }} - {{ eventEndTime }}
         </DialogDescription>
       </DialogHeader>
       Some more stuff here...

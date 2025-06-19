@@ -9,16 +9,14 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 
-import { useStore } from '@/stores/store'
+import { useSidebarStore } from '@/stores/sidebarStore'
 import TheModeSwitch from './TheModeSwitch.vue'
 
-const store = useStore()
+const store = useSidebarStore()
 </script>
 
 <template>
-  <header
-    class="flex h-16 shrink-0 items-center"
-  >
+  <header class="flex h-16 shrink-0 items-center">
     <div class="flex items-center gap-2 px-4 w-full">
       <SidebarTrigger class="-ml-1" />
       <Separator orientation="vertical" class="mr-2 h-4" />
