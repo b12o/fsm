@@ -20,6 +20,9 @@ export const useStudentStore = defineStore('student', () => {
     drivingSchoolId: '123',
   })
 
+  const selectedStudentFullName: string =
+    selectedStudent.value.firstName + ' ' + selectedStudent.value.lastName
+
   const studentLessons = shallowRef<CalendarEventExternal[] | undefined>([
     {
       id: 1,
@@ -60,6 +63,7 @@ export const useStudentStore = defineStore('student', () => {
 
   return {
     selectedStudent,
+    selectedStudentFullName,
     setSelectedStudent,
     studentLessons,
   }
