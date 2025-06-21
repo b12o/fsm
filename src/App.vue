@@ -4,9 +4,13 @@ import { SidebarProvider } from './components/ui/sidebar'
 import TheSidebar from '@/components/TheSidebar.vue'
 import TheHeader from './components/TheHeader.vue'
 import SidebarInset from '@/components/ui/sidebar/SidebarInset.vue'
+import { Toaster } from '@/components/ui/sonner'
+
+import 'vue-sonner/style.css' // vue-so
 </script>
 
 <template>
+  <Toaster />
   <SidebarProvider>
     <TheSidebar />
     <SidebarInset>
