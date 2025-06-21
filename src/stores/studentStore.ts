@@ -4,6 +4,7 @@ import type { CalendarEventExternal } from '@schedule-x/calendar'
 import type { Student } from '@/interfaces'
 
 export const useStudentStore = defineStore('student', () => {
+  //mock
   const selectedStudent = ref<Student>({
     id: '123abc',
     firstName: 'Herbert',
@@ -23,39 +24,9 @@ export const useStudentStore = defineStore('student', () => {
   const selectedStudentFullName: string =
     selectedStudent.value.firstName + ' ' + selectedStudent.value.lastName
 
-  const studentLessons = shallowRef<CalendarEventExternal[] | undefined>([
-    {
-      id: 1,
-      title: 'Event 1',
-      start: '2025-06-17',
-      end: '2025-06-17',
-    },
-    {
-      id: 2,
-      title: 'Matea Miskovic',
-      start: '2025-06-16 12:00',
-      end: '2025-06-16 13:20',
-    },
-    {
-      id: 3,
-      title: 'Fabi Rommel',
-      start: '2025-06-18 13:40',
-      end: '2025-06-18 15:00',
-      _options: {
-        additionalClasses: [],
-      },
-    },
-    {
-      id: 4,
-      title: 'Louis Armstrong',
-      start: '2025-06-19 10:40',
-      end: '2025-06-19 13:00',
-      _options: {
-        additionalClasses: [],
-      },
-    },
-  ])
+  const studentLessons = shallowRef<CalendarEventExternal[] | undefined>([])
 
+  // make an API call and populate selectedStudent object
   function setSelectedStudent(student: Student) {
     console.log(student.id)
     // stub
