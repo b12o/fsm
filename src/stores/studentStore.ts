@@ -55,15 +55,6 @@ export const useStudentStore = defineStore('student', () => {
     console.log(student.id)
     // stub
   }
-  // TODO: move to utils
-  function generateId(length: number = 10): string {
-    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    let result = ''
-    for (let i = 0; i < length; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length))
-    }
-    return result
-  }
 
   function addDuration(timeStr: string, durationMinutes: string | number): string {
     const [hours, minutes] = timeStr.split(':').map(Number)
@@ -89,7 +80,6 @@ export const useStudentStore = defineStore('student', () => {
     eventEndTime,
     eventType,
     eventTypeShort,
-    generateId,
     notifyOpenDialog,
     notifyCloseDialog,
     notifySaveLesson,
