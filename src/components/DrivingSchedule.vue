@@ -4,19 +4,20 @@ import { toast } from 'vue-sonner'
 import { ScheduleXCalendar } from '@schedule-x/vue'
 import { createEventsServicePlugin } from '@schedule-x/events-service'
 import { createDragAndDropPlugin } from '@schedule-x/drag-and-drop'
-import { createResizePlugin } from '@schedule-x/resize'
 import { createCurrentTimePlugin } from '@schedule-x/current-time'
 import {
   createCalendar,
   createViewDay,
   createViewMonthGrid,
   createViewWeek,
+  type CalendarEvent,
 } from '@schedule-x/calendar'
 import '@schedule-x/theme-default/dist/index.css'
 
 import LessonDialog from '@/components/LessonDialog.vue'
 
 import { useStudentStore } from '@/stores/studentStore'
+import { generateId } from '@/lib/utils'
 
 const studentStore = useStudentStore()
 
@@ -33,24 +34,19 @@ const calendarApp = createCalendar({
     end: '23:00',
   },
   views: [createViewDay(), createViewWeek(), createViewMonthGrid()],
-  plugins: [
-    createDragAndDropPlugin(),
-    createResizePlugin(),
-    createCurrentTimePlugin(),
-    eventsServicePlugin,
-  ],
+  plugins: [createDragAndDropPlugin(), createCurrentTimePlugin(), eventsServicePlugin],
   weekOptions: {
     nDays: 6,
     gridHeight: 1000,
+    eventWidth: 95,
   },
   events: studentStore.studentLessons,
   callbacks: {
-    onClickDateTime(dateTime) {
+    onDoubleClickDateTime(dateTime) {
       createNewLesson(dateTime)
     },
-    onEventClick(calendarEvent) {
-      console.log(calendarEvent)
-      editEvent()
+    onDoubleClickEvent(lessonEvent) {
+      editLesson(lessonEvent)
     },
   },
 })
@@ -81,7 +77,6 @@ function createNewLesson(dateTime: string) {
   ;[studentStore.eventDate, studentStore.eventStartTime] = dateTime.split(' ')
   studentStore.eventTitle = `Fahrstunde hinzufügen am ${studentStore.eventDate.split('-').reverse().join('.')}`
   studentStore.eventStartTime = findClosestHalfHour(studentStore.eventStartTime)
-
   // reset defaults
   studentStore.eventNumHours = 2
   studentStore.eventType = 'übung'
@@ -89,19 +84,22 @@ function createNewLesson(dateTime: string) {
   studentStore.notifyOpenDialog = true
 }
 
+function editLesson(lessonEvent: CalendarEvent) {
+  console.log(lessonEvent)
+}
+
 watch(
   () => studentStore.notifySaveLesson,
   (val) => {
-    if (val) {
-      saveLesson()
-			studentStore.notifySaveLesson = false
-    }
+    if (!val) return
+    saveLesson()
+    studentStore.notifySaveLesson = false
   },
 )
 
 function saveLesson() {
   const newLesson = {
-    id: studentStore.generateId(),
+    id: generateId(),
     title: `${studentStore.eventTypeShort} ${studentStore.selectedStudentFullName}`,
     start: `${studentStore.eventDate} ${studentStore.eventStartTime}`,
     end: `${studentStore.eventDate} ${studentStore.eventEndTime}`,
