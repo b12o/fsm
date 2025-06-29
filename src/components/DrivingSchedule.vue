@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import type { ComponentPublicInstance } from 'vue'
-
+import { watch } from 'vue'
 import { toast } from 'vue-sonner'
-
 import { ScheduleXCalendar } from '@schedule-x/vue'
 import { createEventsServicePlugin } from '@schedule-x/events-service'
 import { createDragAndDropPlugin } from '@schedule-x/drag-and-drop'
@@ -17,40 +14,11 @@ import {
 } from '@schedule-x/calendar'
 import '@schedule-x/theme-default/dist/index.css'
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
-
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import { Separator } from '@/components/ui/separator'
-import { Button } from '@/components/ui/button'
-
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-
-import {
-  NumberField,
-  NumberFieldContent,
-  NumberFieldDecrement,
-  NumberFieldIncrement,
-  NumberFieldInput,
-} from '@/components/ui/number-field'
+import LessonDialog from '@/components/LessonDialog.vue'
 
 import { useStudentStore } from '@/stores/studentStore'
 
-const store = useStudentStore()
+const studentStore = useStudentStore()
 
 // Do not use a ref here, as the calendar instance is not reactive, and doing so might cause issues
 // For updating events, use the events service plugin
@@ -75,7 +43,7 @@ const calendarApp = createCalendar({
     nDays: 6,
     gridHeight: 1000,
   },
-  events: store.studentLessons,
+  events: studentStore.studentLessons,
   callbacks: {
     onClickDateTime(dateTime) {
       createNewLesson(dateTime)
@@ -86,59 +54,6 @@ const calendarApp = createCalendar({
     },
   },
 })
-
-// TODO: move to utils
-function generateId(length: number = 10): string {
-  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  let result = ''
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length))
-  }
-  return result
-}
-
-// TODO: this should be a global setting that each driving school can change
-// TODO: alongside price per lesson
-const HOUR_DURATION = 40
-
-const eventTitle = ref('')
-const eventDate = ref('')
-const eventStartTime = ref('')
-const eventNumHours = ref(2)
-const eventDuration = computed(() => HOUR_DURATION * eventNumHours.value)
-const eventEndTime = computed(() => addDuration(eventStartTime.value, eventDuration.value))
-const eventType = ref('übung')
-const eventTypeShort = computed(() => {
-  if (eventType.value === 'überland') return '[ÜL]'
-  if (eventType.value === 'beleuchtung') return '[BEL]'
-  if (eventType.value === 'autobahn') return '[AB]'
-  if (eventType.value === 'prüfung') return '[PRÜFUNG]'
-  return ''
-})
-
-function createNewLesson(dateTime: string) {
-  ;[eventDate.value, eventStartTime.value] = dateTime.split(' ')
-  eventTitle.value = `Fahrstunde hinzufügen am ${eventDate.value.split('-').reverse().join('.')}`
-  eventStartTime.value = findClosestHalfHour(eventStartTime.value)
-  // reset defaults
-  eventNumHours.value = 2
-  eventType.value = 'übung'
-  openDialog()
-}
-
-function saveLesson() {
-  const newLesson = {
-    id: generateId(),
-    title: `${eventTypeShort.value} ${store.selectedStudentFullName}`,
-    start: `${eventDate.value} ${eventStartTime.value}`,
-    end: `${eventDate.value} ${eventEndTime.value}`,
-  }
-  eventsServicePlugin.add(newLesson)
-  store.studentLessons?.push(newLesson)
-  toast('Fahrstunde wurde erstellt!')
-  // TODO: add to store, API call
-  closeDialog()
-}
 
 function findClosestHalfHour(timeStr: string): string {
   const [hours, minutes] = timeStr.split(':').map(Number)
@@ -162,175 +77,48 @@ function findClosestHalfHour(timeStr: string): string {
   return `${hour.toString().padStart(2, '0')}:${current.toString().padStart(2, '0')}`
 }
 
-// addDuration
-function addDuration(timeStr: string, durationMinutes: string | number): string {
-  const [hours, minutes] = timeStr.split(':').map(Number)
-  let totalMinutes = hours * 60 + minutes + Number(durationMinutes)
-  totalMinutes %= 24 * 60
+function createNewLesson(dateTime: string) {
+  ;[studentStore.eventDate, studentStore.eventStartTime] = dateTime.split(' ')
+  studentStore.eventTitle = `Fahrstunde hinzufügen am ${studentStore.eventDate.split('-').reverse().join('.')}`
+  studentStore.eventStartTime = findClosestHalfHour(studentStore.eventStartTime)
 
-  const newHours = Math.floor(totalMinutes / 60)
-  const newMinutes = totalMinutes % 60
+  // reset defaults
+  studentStore.eventNumHours = 2
+  studentStore.eventType = 'übung'
 
-  return `${String(newHours).padStart(2, '0')}:${String(newMinutes).padStart(2, '0')}`
+  studentStore.notifyOpenDialog = true
 }
 
-function editEvent() {
-  openDialog()
-}
+watch(
+  () => studentStore.notifySaveLesson,
+  (val) => {
+    if (val) {
+      saveLesson()
+			studentStore.notifySaveLesson = false
+    }
+  },
+)
 
-const dialogTrigger = ref<ComponentPublicInstance | null>(null)
-function openDialog() {
-  dialogTrigger.value?.$el.click()
-}
-function closeDialog() {
-  dialogTrigger.value?.$el.click()
+function saveLesson() {
+  const newLesson = {
+    id: studentStore.generateId(),
+    title: `${studentStore.eventTypeShort} ${studentStore.selectedStudentFullName}`,
+    start: `${studentStore.eventDate} ${studentStore.eventStartTime}`,
+    end: `${studentStore.eventDate} ${studentStore.eventEndTime}`,
+  }
+  eventsServicePlugin.add(newLesson)
+  studentStore.studentLessons?.push(newLesson)
+
+  studentStore.notifyCloseDialog = true
+  toast('Fahrstunde wurde erstellt!')
+  // TODO save to DB
+  studentStore.notifyCloseDialog = true
 }
 </script>
 
 <template>
   <ScheduleXCalendar :calendar-app="calendarApp" />
-  <Dialog>
-    <DialogTrigger ref="dialogTrigger" class="hidden"></DialogTrigger>
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle>{{ eventTitle }}</DialogTitle>
-        <DialogDescription class="hidden"></DialogDescription>
-      </DialogHeader>
-      <div class="flex mt-4 gap-2">
-        <div class="flex-1">
-          <Label for="new_event_student" class="mb-2">Fahrschüler</Label>
-          <div id="new_event_student" class="border border-neutral-800 h-9 rounded-lg">
-            <p class="flex items-center h-full px-2">{{ store.selectedStudentFullName }}</p>
-          </div>
-        </div>
-        <div>
-          <Label for="new_event_lesson_type" class="mb-2">Typ</Label>
-          <Select id="new_event_lesson_type" v-model="eventType">
-            <SelectTrigger>
-              <SelectValue placeholder="Fahrttyp" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="übung">Übung</SelectItem>
-              <SelectItem value="überland">Überland</SelectItem>
-              <SelectItem value="beleuchtung">Beleuchtung</SelectItem>
-              <SelectItem value="autobahn">Autobahn</SelectItem>
-              <SelectItem value="prüfung">Prüfung</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-      <div class="mt-4 flex gap-2">
-        <div class="flex-1">
-          <Label for="new_event_start_time" class="mb-2">Beginn</Label>
-          <Select id="new_event_lesson_type" v-model="eventStartTime">
-            <SelectTrigger class="w-full">
-              <SelectValue placeholder="Startzeit" />
-            </SelectTrigger>
-            <SelectContent class="min-w-12 w-24 h-64">
-              <SelectGroup>
-                <SelectItem value="06:00">06:00</SelectItem>
-                <SelectItem value="06:30">06:30</SelectItem>
-                <SelectItem value="07:00">07:00</SelectItem>
-                <SelectItem value="07:30">07:30</SelectItem>
-                <SelectItem value="08:00">08:00</SelectItem>
-                <SelectItem value="08:30">08:30</SelectItem>
-                <SelectItem value="09:00">09:00</SelectItem>
-                <SelectItem value="09:30">09:30</SelectItem>
-                <SelectItem value="10:00">10:00</SelectItem>
-                <SelectItem value="10:30">10:30</SelectItem>
-                <SelectItem value="11:00">11:00</SelectItem>
-                <SelectItem value="11:30">11:30</SelectItem>
-                <SelectItem value="12:00">12:00</SelectItem>
-                <SelectItem value="12:30">12:30</SelectItem>
-                <SelectItem value="13:00">13:00</SelectItem>
-                <SelectItem value="13:30">13:30</SelectItem>
-                <SelectItem value="14:00">14:00</SelectItem>
-                <SelectItem value="14:30">14:30</SelectItem>
-                <SelectItem value="15:00">15:00</SelectItem>
-                <SelectItem value="15:30">15:30</SelectItem>
-                <SelectItem value="16:00">16:00</SelectItem>
-                <SelectItem value="16:30">16:30</SelectItem>
-                <SelectItem value="17:00">17:00</SelectItem>
-                <SelectItem value="17:30">17:30</SelectItem>
-                <SelectItem value="18:00">18:00</SelectItem>
-                <SelectItem value="18:30">18:30</SelectItem>
-                <SelectItem value="19:00">19:00</SelectItem>
-                <SelectItem value="19:30">19:30</SelectItem>
-                <SelectItem value="20:00">20:00</SelectItem>
-                <SelectItem value="20:30">20:30</SelectItem>
-                <SelectItem value="21:00">21:00</SelectItem>
-                <SelectItem value="21:30">21:30</SelectItem>
-                <SelectItem value="22:00">22:00</SelectItem>
-                <SelectItem value="22:30">22:30</SelectItem>
-                <SelectItem value="23:00">23:00</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </div>
-        <div class="flex-1">
-          <Label for="new_event_num_lessons" class="mb-2">Fahrstunden</Label>
-          <NumberField
-            id="new_event_num_lessons"
-            v-model="eventNumHours"
-            :default-value="2"
-            :min="1"
-            :max="10"
-            class="w-full"
-          >
-            <NumberFieldContent>
-              <NumberFieldDecrement />
-              <NumberFieldInput />
-              <NumberFieldIncrement />
-            </NumberFieldContent>
-          </NumberField>
-        </div>
-        <div class="flex-1">
-          <Label for="new_event_end_time" class="mb-2">Ende</Label>
-          <div id="new_event_end_time" class="border border-neutral-800 h-9 rounded-lg">
-            <p class="flex items-center h-full px-2 text-sm">{{ eventEndTime }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="mt-4 flex gap-2">
-        <div class="flex-1">
-          <Label for="new_event_instructor" class="mb-2">Fahrlehrer</Label>
-          <Select id="new_event_instructor" default-value="breana">
-            <SelectTrigger class="w-full">
-              <SelectValue placeholder="Fahrlehrer" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="brandon">Brandon</SelectItem>
-              <SelectItem value="kennedy">Kennedy</SelectItem>
-              <SelectItem value="jimmy">Jimmy</SelectItem>
-              <SelectItem value="breana">Breana</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div class="flex-1">
-          <Label for="new_event_vehicle" class="mb-2">Fahrzeug</Label>
-          <Select id="new_event_vehicle" default-value="toto">
-            <SelectTrigger class="w-full">
-              <SelectValue placeholder="Fahrzeug" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="toto">Toto</SelectItem>
-              <SelectItem value="audi">Audi</SelectItem>
-              <SelectItem value="blaue-rakete">Blaue Rakete</SelectItem>
-              <SelectItem value="zafaerys">Zafaerys</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-      <div class="mt-4">
-        <Textarea placeholder="Notizen" class="mb-1" />
-      </div>
-      <Separator />
-      <div class="flex gap-2 justify-end mt-2">
-        <Button class="flex-1" @click="saveLesson">Speichern</Button>
-        <Button class="flex-1" variant="secondary" @click="closeDialog">Abbrechen</Button>
-      </div>
-    </DialogContent>
-  </Dialog>
+  <LessonDialog />
 </template>
 
 <style>

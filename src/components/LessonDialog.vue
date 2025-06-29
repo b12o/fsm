@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
+
+import { useStudentStore } from '@/stores/studentStore'
+
 import {
   Dialog,
   DialogContent,
@@ -7,6 +12,65 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+import {
+  NumberField,
+  NumberFieldContent,
+  NumberFieldDecrement,
+  NumberFieldIncrement,
+  NumberFieldInput,
+} from '@/components/ui/number-field'
+
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { Separator } from '@/components/ui/separator'
+import { Button } from '@/components/ui/button'
+
+const studentStore = useStudentStore()
+const dialogTrigger = ref<ComponentPublicInstance | null>(null)
+
+watch(
+  () => studentStore.notifyOpenDialog,
+  (val) => {
+    if (val) {
+      openDialog()
+      // dialog is already open so the notify flag can be reset
+      studentStore.notifyOpenDialog = false
+    }
+  },
+)
+
+watch(
+  () => studentStore.notifyCloseDialog,
+  (val) => {
+    if (val) {
+      closeDialog()
+      // dialog is already open so the notify flag can be reset
+      studentStore.notifyCloseDialog = false
+    }
+  },
+)
+
+function notifySaveLesson() {
+  studentStore.notifySaveLesson = true
+}
+
+function openDialog() {
+  dialogTrigger.value?.$el.click()
+}
+
+function closeDialog() {
+  dialogTrigger.value?.$el.click()
+}
 </script>
 
 <template>
@@ -14,19 +78,19 @@ import {
     <DialogTrigger ref="dialogTrigger" class="hidden"></DialogTrigger>
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>{{ eventTitle }}</DialogTitle>
+        <DialogTitle>{{ studentStore.eventTitle }}</DialogTitle>
         <DialogDescription class="hidden"></DialogDescription>
       </DialogHeader>
       <div class="flex mt-4 gap-2">
         <div class="flex-1">
           <Label for="new_event_student" class="mb-2">Fahrschüler</Label>
           <div id="new_event_student" class="border border-neutral-800 h-9 rounded-lg">
-            <p class="flex items-center h-full px-2">{{ store.selectedStudentFullName }}</p>
+            <p class="flex items-center h-full px-2">{{ studentStore.selectedStudentFullName }}</p>
           </div>
         </div>
         <div>
           <Label for="new_event_lesson_type" class="mb-2">Typ</Label>
-          <Select id="new_event_lesson_type" v-model="eventType">
+          <Select id="new_event_lesson_type" v-model="studentStore.eventType">
             <SelectTrigger>
               <SelectValue placeholder="Fahrttyp" />
             </SelectTrigger>
@@ -43,7 +107,7 @@ import {
       <div class="mt-4 flex gap-2">
         <div class="flex-1">
           <Label for="new_event_start_time" class="mb-2">Beginn</Label>
-          <Select id="new_event_lesson_type" v-model="eventStartTime">
+          <Select id="new_event_lesson_type" v-model="studentStore.eventStartTime">
             <SelectTrigger class="w-full">
               <SelectValue placeholder="Startzeit" />
             </SelectTrigger>
@@ -92,7 +156,7 @@ import {
           <Label for="new_event_num_lessons" class="mb-2">Fahrstunden</Label>
           <NumberField
             id="new_event_num_lessons"
-            v-model="eventNumHours"
+            v-model="studentStore.eventNumHours"
             :default-value="2"
             :min="1"
             :max="10"
@@ -108,7 +172,7 @@ import {
         <div class="flex-1">
           <Label for="new_event_end_time" class="mb-2">Ende</Label>
           <div id="new_event_end_time" class="border border-neutral-800 h-9 rounded-lg">
-            <p class="flex items-center h-full px-2 text-sm">{{ eventEndTime }}</p>
+            <p class="flex items-center h-full px-2 text-sm">{{ studentStore.eventEndTime }}</p>
           </div>
         </div>
       </div>
@@ -147,7 +211,7 @@ import {
       </div>
       <Separator />
       <div class="flex gap-2 justify-end mt-2">
-        <Button class="flex-1" @click="saveLesson">Speichern</Button>
+        <Button class="flex-1" @click="notifySaveLesson">Speichern</Button>
         <Button class="flex-1" variant="secondary" @click="closeDialog">Abbrechen</Button>
       </div>
     </DialogContent>
