@@ -41,22 +41,20 @@ const dialogTrigger = ref<ComponentPublicInstance | null>(null)
 watch(
   () => studentStore.notifyOpenDialog,
   (val) => {
-    if (val) {
-      openDialog()
-      // dialog is already open so the notify flag can be reset
-      studentStore.notifyOpenDialog = false
-    }
+    if (!val) return
+    openDialog()
+    // dialog is already open so the notify flag can be reset
+    studentStore.notifyOpenDialog = false
   },
 )
 
 watch(
   () => studentStore.notifyCloseDialog,
   (val) => {
-    if (val) {
-      closeDialog()
-      // dialog is already open so the notify flag can be reset
-      studentStore.notifyCloseDialog = false
-    }
+    if (!val) return
+    closeDialog()
+    // dialog is already open so the notify flag can be reset
+    studentStore.notifyCloseDialog = false
   },
 )
 
