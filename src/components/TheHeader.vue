@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { SidebarTrigger } from '@/components/ui/sidebar'
-
-import TheModeSwitch from './TheModeSwitch.vue'
 </script>
 
 <template>
   <header class="flex h-16 shrink-0 items-center">
     <div class="flex items-center gap-2 px-4 w-full">
       <SidebarTrigger class="-ml-1" />
-      <TheModeSwitch class="ml-auto mr-8" />
     </div>
   </header>
 </template>

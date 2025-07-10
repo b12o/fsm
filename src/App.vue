@@ -5,6 +5,10 @@ import TheSidebar from '@/components/TheSidebar.vue'
 import TheHeader from './components/TheHeader.vue'
 import SidebarInset from '@/components/ui/sidebar/SidebarInset.vue'
 import { Toaster } from '@/components/ui/sonner'
+import { useColorMode } from '@vueuse/core'
+
+const mode = useColorMode()
+mode.value = 'dark'
 
 import 'vue-sonner/style.css' // vue-so
 </script>
