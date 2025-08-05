@@ -18,10 +18,10 @@ import 'vue-sonner/style.css'
   <SidebarProvider>
     <TheSidebar />
     <SidebarInset>
-      <TheHeader />
-      <div
-        class="flex flex-1 flex-col p-2 border border-neutral-800 bg-neutral-900 md:rounded-lg md:mt-2 md:mb-2 md:mr-2"
-      >
+      <div class="px-2">
+        <TheHeader />
+      </div>
+      <div class="flex flex-1 flex-col p-2 bg-neutral-950 md:rounded-lg md:mt-2 md:mb-2 md:mr-2">
         <RouterView class="h-full" />
       </div>
     </SidebarInset>

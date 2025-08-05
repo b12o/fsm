@@ -9,9 +9,9 @@ export const useStudentStore = defineStore('student', () => {
   //mock
   const selectedStudent = ref<Student>({
     id: '123abc',
-    firstName: 'Herbert',
-    lastName: 'Sperbert',
-    email: 'herbert@sperbert.de',
+    firstName: 'Matea',
+    lastName: 'Miskovic',
+    email: 'matea@miskovic.de',
     phoneNumber: '0177 123 456 78',
     licenseType: 'manual',
     instructorId: 'David',

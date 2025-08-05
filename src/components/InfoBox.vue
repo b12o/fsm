@@ -9,10 +9,9 @@ defineProps<{
 </script>
 
 <template>
-	<Card class="mb-4">
-		<CardContent class="flex flex-wrap">
-		</CardContent>
-	</Card>
+  <Card class="mb-4">
+    <CardContent class="flex flex-wrap"> </CardContent>
+  </Card>
   <Card>
     <CardContent class="flex flex-wrap">
       <InfoItem :item-key="'Vorname'" :item-value="data.firstName"></InfoItem>
