@@ -9,11 +9,16 @@ defineProps<{
 </script>
 
 <template>
+	<Card class="mb-4">
+		<CardContent class="flex flex-wrap">
+		</CardContent>
+	</Card>
   <Card>
     <CardContent class="flex flex-wrap">
       <InfoItem :item-key="'Vorname'" :item-value="data.firstName"></InfoItem>
       <InfoItem :item-key="'Nachname'" :item-value="data.lastName"></InfoItem>
       <InfoItem :item-key="'Email'" :item-value="data.email"></InfoItem>
+      <InfoItem :item-key="'Sehhilfe'" :item-value="'Ja'"></InfoItem>
       <InfoItem :item-key="'Telefon-Nr'" :item-value="data.phoneNumber"></InfoItem>
       <InfoItem :item-key="'Lizenz-Typ'" :item-value="data.licenseType"></InfoItem>
       <InfoItem :item-key="'Anz. Fahrstuden'" :item-value="data.numLessons"></InfoItem>

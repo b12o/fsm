@@ -10,7 +10,7 @@ import { useColorMode } from '@vueuse/core'
 const mode = useColorMode()
 mode.value = 'dark'
 
-import 'vue-sonner/style.css' // vue-so
+import 'vue-sonner/style.css'
 </script>
 
 <template>
@@ -19,10 +19,10 @@ import 'vue-sonner/style.css' // vue-so
     <TheSidebar />
     <SidebarInset>
       <TheHeader />
-      <div class="flex flex-1 flex-col mr-1.5 mb-2">
-        <div class="flex-1 rounded-[12px] bg-muted/50 p-2">
-          <RouterView class="h-full" />
-        </div>
+      <div
+        class="flex flex-1 flex-col p-2 border border-neutral-800 bg-neutral-900 md:rounded-lg md:mt-2 md:mb-2 md:mr-2"
+      >
+        <RouterView class="h-full" />
       </div>
     </SidebarInset>
   </SidebarProvider>

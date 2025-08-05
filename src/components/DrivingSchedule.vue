@@ -10,8 +10,9 @@ import {
   createViewDay,
   createViewMonthGrid,
   createViewWeek,
-  type CalendarEvent,
 } from '@schedule-x/calendar'
+
+import { type CalendarEvent } from '@schedule-x/calendar'
 import '@schedule-x/theme-default/dist/index.css'
 
 import LessonDialog from '@/components/LessonDialog.vue'
@@ -122,7 +123,7 @@ function saveLesson() {
 <style>
 .sx-vue-calendar-wrapper {
   width: 100%;
-  height: calc(100vh - 19.5rem);
+  height: calc(100vh - 15.5rem);
 }
 .sx__current-time-indicator {
   height: 1px;
@@ -132,6 +133,7 @@ function saveLesson() {
   background-color: var(--color-neutral-400);
 }
 .sx__calendar {
-  border: 1px solid var(--color-neutral-700);
+  border: 1px solid var(--color-neutral-800);
+  margin-bottom: 0;
 }
 </style>
