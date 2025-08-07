@@ -123,7 +123,7 @@ function saveLesson() {
 <style>
 .sx-vue-calendar-wrapper {
   width: 100%;
-  height: calc(100vh - 15.5rem);
+  height: calc(100vh - 21.5rem);
 }
 .sx__current-time-indicator {
   height: 1px;
