@@ -2,7 +2,6 @@
 import { Accordion } from '@/components/ui/accordion'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Separator } from '@/components/ui/separator'
 import ProgressItem from '@/components/ProgressItem.vue'
 </script>
 

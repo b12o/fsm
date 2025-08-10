@@ -69,7 +69,7 @@ console.log(props.studentId)
       </TabsContent>
       <TabsContent value="protocol">
         <Card>
-          <CardContent>Protocol</CardContent>
+          <CardContent class="italic">Noch keine notizen</CardContent>
         </Card>
       </TabsContent>
     </Tabs>
