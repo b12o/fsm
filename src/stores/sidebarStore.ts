@@ -1,50 +1,127 @@
 import { useRouter } from 'vue-router'
 import { defineStore } from 'pinia'
-import { GraduationCap, Users, Car } from 'lucide-vue-next'
+import {
+  LayoutGrid,
+  GraduationCap,
+  Users,
+  Car,
+  IdCard,
+  File,
+  ChartLine,
+  Building,
+  Settings,
+} from 'lucide-vue-next'
+import type { FunctionalComponent } from 'vue'
+
+type SidebarFooter = {
+  initials: string
+  username: string
+  email: string
+}
+
+type RouteObject = {
+  title: string
+  route: string
+  icon: FunctionalComponent
+}
+
+type SidebarNavItem = {
+  name: string
+  items: RouteObject[]
+}
+
+type Sidebar = {
+  isOpen: boolean
+  currentView: string
+  navGroups: SidebarNavItem[]
+  footer: SidebarFooter
+}
 
 export const useSidebarStore = defineStore('sidebar', () => {
   const router = useRouter()
 
-  const applicationTitle = 'FSM'
-  const applicationVersion = 'v0.0.1'
+  const applicationTitle = 'Zaffy'
+  const applicationVersion = 'alpha - v0.01'
 
-  const sidebar = {
-    isOpen: true,
-    overviewLabel: 'Übersicht',
+  const sidebar: Sidebar = {
+    isOpen: false,
     currentView: '',
-    navItems: [
+    navGroups: [
       {
-        title: 'Fahrschüler',
-        route: 'students',
-        icon: GraduationCap,
+        name: 'group1',
+        items: [
+          {
+            title: 'Übersicht',
+            route: 'students',
+            icon: LayoutGrid,
+          },
+        ],
       },
       {
-        title: 'Fahrlehrer',
-        route: 'instructors',
-        icon: Users,
+        name: 'group2',
+        items: [
+          {
+            title: 'Fahrschüler',
+            route: 'students',
+            icon: GraduationCap,
+          },
+          {
+            title: 'Fahrlehrer',
+            route: 'instructors',
+            icon: Users,
+          },
+          {
+            title: 'Fahrzeuge',
+            route: 'vehicles',
+            icon: Car,
+          },
+          {
+            title: 'Prüfungen',
+            route: 'exams',
+            icon: IdCard,
+          },
+        ],
       },
       {
-        title: 'Fahrzeuge',
-        route: 'vehicles',
-        icon: Car,
+        name: 'group3',
+        items: [
+          {
+            title: 'Dokumente',
+            route: 'documents',
+            icon: File,
+          },
+          {
+            title: 'Statistiken',
+            route: 'statistics',
+            icon: ChartLine,
+          },
+          {
+            title: 'Betrieb',
+            route: 'company',
+            icon: Building,
+          },
+        ],
+      },
+      {
+        name: 'group4',
+        items: [
+          {
+            title: 'Einstellungen',
+            route: 'settings',
+            icon: Settings,
+          },
+        ],
       },
     ],
-    footerInfo: {
+    footer: {
       username: 'max',
       email: 'max@mustermann.de',
       initials: 'MM',
-      actions: {
-        signOut: {
-          label: 'abmelden',
-        },
-      },
     },
   }
 
-  function sidebarNavigateTo(route: string) {
-    router.push({ name: route })
-    const found = sidebar.navItems.find((x) => x.route === route)
-    sidebar.currentView = found?.title || ''
+  function sidebarNavigateTo(item: RouteObject) {
+    router.push({ name: item.route })
   }
 
   return {
