@@ -6,16 +6,18 @@ import TheHeader from './components/TheHeader.vue'
 import SidebarInset from '@/components/ui/sidebar/SidebarInset.vue'
 import { Toaster } from '@/components/ui/sonner'
 import { useColorMode } from '@vueuse/core'
+import { useSidebarStore } from '@/stores/sidebarStore'
 
 const mode = useColorMode()
-mode.value = 'dark'
+const sidebarStore = useSidebarStore()
 
+mode.value = 'dark'
 import 'vue-sonner/style.css'
 </script>
 
 <template>
   <Toaster />
-  <SidebarProvider>
+  <SidebarProvider v-model:open="sidebarStore.sidebar.isOpen">
     <TheSidebar />
     <SidebarInset>
       <div class="px-2">
