@@ -75,8 +75,8 @@ onMounted(() => {
       />
     </div>
     <div class="border rounded-md">
-      <Table>
-        <TableHeader>
+      <Table class="bg-neutral-900">
+        <TableHeader class="bg-neutral-800">
           <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
             <TableHead v-for="header in headerGroup.headers" :key="header.id">
               <FlexRender
