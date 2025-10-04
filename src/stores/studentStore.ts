@@ -12,7 +12,7 @@ export const useStudentStore = defineStore('student', () => {
     firstName: 'Maria',
     lastName: 'Mustermann',
     email: 'maria@mustermann.de',
-    phoneNumber: '0177 123 456 78',
+    phoneNumber: '+4917712345678',
     birthday: '1990-05-12',
     licenseType: 'manual',
     instructorId: 'David',
