@@ -1,9 +1,10 @@
-export interface Student {
+export type Student = {
   id: string
   firstName: string
   lastName: string
   email: string
   phoneNumber: string
+  birthday: string
   drivingSchoolId: string
   status: string
   licenseType: string
@@ -14,13 +15,14 @@ export interface Student {
   preferredVehicleId: string
 }
 
-export interface Instructor {
+export type Instructor = {
   id: string
   firstName: string
   lastName: string
   email: string
-}
-
-export interface ObjectWithId {
-  id: string
+  phoneNumber: string
+  birthday: string
+  numStudents: number
+  preferredVehicleId: string
+  licensesTaught: string
 }

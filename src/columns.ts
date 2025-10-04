@@ -1,8 +1,8 @@
 import { h } from 'vue'
 import { Check, ArrowUpDown } from 'lucide-vue-next'
 import type { ColumnDef } from '@tanstack/vue-table'
-import type { Student } from '@/interfaces'
-import type { Instructor } from '@/interfaces'
+import type { Student } from '@/types'
+import type { Instructor } from '@/types'
 import { Button } from '@/components/ui/button'
 
 export const StudentColumns: ColumnDef<Student>[] = [
