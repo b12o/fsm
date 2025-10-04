@@ -2,9 +2,9 @@ export type Student = {
   id: string
   firstName: string
   lastName: string
+  birthday: string
   email: string
   phoneNumber: string
-  birthday: string
   drivingSchoolId: string
   status: string
   licenseType: string
@@ -19,9 +19,9 @@ export type Instructor = {
   id: string
   firstName: string
   lastName: string
+  birthday: string
   email: string
   phoneNumber: string
-  birthday: string
   numStudents: number
   preferredVehicleId: string
   licensesTaught: string
