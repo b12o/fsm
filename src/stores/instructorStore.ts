@@ -9,11 +9,11 @@ export const useInstructorStore = defineStore('instructor', () => {
     firstName: 'Thomas',
     lastName: 'Müller',
     email: 'thomas@mueller.de',
-    numStudents: 17,
+    numStudents: 12,
     birthday: '29.02.1978',
-    phoneNumber: '',
-    preferredVehicleId: '',
-    licensesTaught: '',
+    phoneNumber: '+4912345678901',
+    preferredVehicleId: 'Blau',
+    licensesTaught: 'B, BE, B96',
   })
 
   return {
