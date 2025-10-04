@@ -2,5 +2,5 @@
 </script>
 
 <template>
-	<span>Hello world</span>
+	<span>Das ist die Übersicht.</span>
 </template>

@@ -5,7 +5,7 @@ import type { Row } from '@tanstack/vue-table'
 
 import DataTable from '@/components/ui/data-table.vue'
 import mockStudents from '@/stores/mockStudents'
-import type { Student } from '@/interfaces'
+import type { Student } from '@/types'
 import { StudentColumns } from '@/columns'
 //import { useStore } from '@/stores/store'
 

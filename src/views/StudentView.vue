@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Student } from '@/interfaces'
+import type { Student } from '@/types'
 import { useStudentStore } from '@/stores/studentStore'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Info, CalendarCheck, ListChecks, NotebookPen } from 'lucide-vue-next'
@@ -8,9 +8,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import StudentInfo from '@/components/StudentInfo.vue'
 import DrivingSchedule from '@/components/DrivingSchedule.vue'
 import LearningProgress from '@/components/LearningProgress.vue'
-import { Separator } from '@/components/ui/separator'
 
-interface Props {
+type Props = {
   studentId: string
 }
 
@@ -22,38 +21,37 @@ console.log(props.studentId)
 </script>
 
 <template>
-  <Card>
+  <Card class="rounded-none">
     <CardContent>
       <div class="flex flex-row">
         <Avatar class="h-24 w-24">
-          <AvatarImage src="https://github.com/unovue.png" />
+          <AvatarImage src="https://i.postimg.cc/P5NtqzVy/www-thispersondoesnotexist.jpg" />
           <AvatarFallback>MM</AvatarFallback>
         </Avatar>
         <div class="ml-8">
-          <h1 class="text-3xl">Matea Miskovic</h1>
+          <h1 class="text-3xl">Maria Mustermann</h1>
           <h4>Fahrschüler:in</h4>
           <h4>Berlin, DE</h4>
         </div>
       </div>
     </CardContent>
   </Card>
-  <Separator class="mt-8" />
-  <div class="flex flex-col mt-8">
+  <div class="flex flex-col mt-4">
     <Tabs default-value="info">
-      <TabsList class="flex justify-between w-full mb-2">
-        <TabsTrigger value="info">
+      <TabsList class="flex justify-between w-full mb-2 rounded-none">
+        <TabsTrigger value="info" class="rounded-none">
           <Info />
           Details
         </TabsTrigger>
-        <TabsTrigger value="plan">
+        <TabsTrigger value="plan" class="rounded-none">
           <CalendarCheck />
           Fahrplan
         </TabsTrigger>
-        <TabsTrigger value="progress">
+        <TabsTrigger value="progress" class="rounded-none">
           <ListChecks />
           Fortschritt
         </TabsTrigger>
-        <TabsTrigger value="protocol">
+        <TabsTrigger value="protocol" class="rounded-none">
           <NotebookPen />
           Notizen
         </TabsTrigger>
@@ -68,7 +66,7 @@ console.log(props.studentId)
         <LearningProgress />
       </TabsContent>
       <TabsContent value="protocol">
-        <Card>
+        <Card class="rounded-none">
           <CardContent class="italic">Noch keine notizen</CardContent>
         </Card>
       </TabsContent>

@@ -116,14 +116,14 @@ function saveLesson() {
 </script>
 
 <template>
-  <ScheduleXCalendar :calendar-app="calendarApp" />
+  <ScheduleXCalendar :calendar-app="calendarApp"/>
   <LessonDialog />
 </template>
 
 <style>
 .sx-vue-calendar-wrapper {
   width: 100%;
-  height: calc(100vh - 21.5rem);
+  height: calc(100vh - 18rem);
 }
 .sx__current-time-indicator {
   height: 1px;
@@ -135,5 +135,6 @@ function saveLesson() {
 .sx__calendar {
   border: 1px solid var(--color-neutral-800);
   margin-bottom: 0;
+	border-radius: 0;
 }
 </style>

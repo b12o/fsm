@@ -65,16 +65,16 @@ onMounted(() => {
   <div>
     <div class="flex items-center py-4">
       <span class="absolute start-2 flex items-center justify-center px-2">
-        <Search class="size-5 text-muted-foreground" />
+        <Search class="size-5 text-muted-foreground ml-2" />
       </span>
       <Input
         id="data-table-search-input"
-        class="max-w-sm pl-8"
+        class="max-w-sm pl-8 rounded-none"
         placeholder="Suche"
         @update:model-value="table.setGlobalFilter($event)"
       />
     </div>
-    <div class="border rounded-md">
+    <div class="border rounded-none">
       <Table class="bg-neutral-900">
         <TableHeader class="bg-neutral-800">
           <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
@@ -113,6 +113,7 @@ onMounted(() => {
     <div class="flex items-center justify-center py-4 space-x-2">
       <Button
         variant="outline"
+				class="rounded-none"
         size="sm"
         :disabled="!table.getCanPreviousPage()"
         @click="table.previousPage()"
@@ -121,6 +122,7 @@ onMounted(() => {
       </Button>
       <Button
         variant="outline"
+				class="rounded-none"
         size="sm"
         :disabled="!table.getCanNextPage()"
         @click="table.nextPage()"

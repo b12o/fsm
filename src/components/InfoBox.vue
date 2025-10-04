@@ -9,10 +9,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <Card>
+  <Card class="rounded-none">
     <div class="px-8 flex justify-between">
       <CardTitle class="font-semibold text-xl">{{ props.title }}</CardTitle>
-      <Button><Pen/>Bearbeiten</Button>
+      <Button variant="outline"><Pen />Bearbeiten</Button>
     </div>
     <Separator />
     <CardContent class="flex flex-wrap gap-y-4">

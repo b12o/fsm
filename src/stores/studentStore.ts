@@ -1,7 +1,7 @@
 import { ref, shallowRef, computed } from 'vue'
 import { defineStore } from 'pinia'
 import type { CalendarEventExternal } from '@schedule-x/calendar'
-import type { Student } from '@/interfaces'
+import type { Student } from '@/types'
 
 export const useStudentStore = defineStore('student', () => {
   const LESSON_HOUR = 40
@@ -9,10 +9,11 @@ export const useStudentStore = defineStore('student', () => {
   //mock
   const selectedStudent = ref<Student>({
     id: '123abc',
-    firstName: 'Matea',
-    lastName: 'Miskovic',
-    email: 'matea@miskovic.de',
+    firstName: 'Maria',
+    lastName: 'Mustermann',
+    email: 'maria@mustermann.de',
     phoneNumber: '0177 123 456 78',
+    birthday: '1990-05-12',
     licenseType: 'manual',
     instructorId: 'David',
     preferredVehicleId: 'Blau',

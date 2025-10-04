@@ -3,6 +3,8 @@ import HomeView from '@/views/HomeView.vue'
 import StudentsOverview from '@/views/StudentsOverview.vue'
 import StudentView from '@/views/StudentView.vue'
 import InstructorsOverview from '@/views/InstructorsOverview.vue'
+import InstructorView from '@/views/InstructorView.vue'
+
 import VehiclesOverview from '@/views/VehiclesOverview.vue'
 
 const router = createRouter({
@@ -28,6 +30,11 @@ const router = createRouter({
       path: '/instructors',
       name: 'instructors',
       component: InstructorsOverview,
+    },
+    {
+      path: '/instructors/:instructorId',
+      name: 'instructor',
+      component: InstructorView,
     },
     {
       path: '/vehicles',

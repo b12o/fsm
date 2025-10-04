@@ -8,8 +8,15 @@ import ProgressItem from '@/components/ProgressItem.vue'
 <template>
   <Accordion type="single" collapsible class="w-full">
     <!-- Grundstufe -->
-    <ProgressItem :value="'basic'" :title="'Grundstufe: 100%'" :color="'orange-400'" class="-mt-2">
-      <Card class="mt-2 -mb-4 border border-orange-400 bg-neutral-900 text-white rounded-lg">
+    <!-- color: orange-400 -->
+    <ProgressItem
+      :value="'basic'"
+      :title="'Grundstufe'"
+      :color="'neutral-800'"
+      :progress="48"
+      class="-mt-2"
+    >
+      <Card class="mt-2 -mb-4 border border-neutral-800 rounded-none bg-neutral-900 text-white">
         <CardContent>
           <div class="flex items-center">
             <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
@@ -60,8 +67,14 @@ import ProgressItem from '@/components/ProgressItem.vue'
     </ProgressItem>
 
     <!-- Grundfahraufgaben -->
-    <ProgressItem :value="'tasks'" :title="'Grundfahraufgaben: 10%'" :color="'orange-500'">
-      <Card class="mt-2 -mb-4 border border-orange-500 rounded-lg">
+    <!-- color: orange-500 -->
+    <ProgressItem
+      :value="'tasks'"
+      :title="'Grundfahraufgaben'"
+      :color="'neutral-800'"
+      :progress="10"
+    >
+      <Card class="mt-2 -mb-4 border border-neutral-800 rounded-none">
         <CardContent>
           <div class="flex items-center">
             <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
@@ -88,8 +101,13 @@ import ProgressItem from '@/components/ProgressItem.vue'
     </ProgressItem>
 
     <!-- Aufbaustufe -->
-    <ProgressItem :value="'intermediate'" :title="'Aufbaustufe: 35%'" :color="'orange-600'">
-      <Card class="mt-2 -mb-4 border border-orange-600 rounded-lg">
+    <ProgressItem
+      :value="'intermediate'"
+      :title="'Aufbaustufe'"
+      :color="'neutral-800'"
+      :progress="35"
+    >
+      <Card class="mt-2 -mb-4 border border-neutral-800 rounded-none">
         <CardContent>
           <div class="flex items-center">
             <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
@@ -120,8 +138,14 @@ import ProgressItem from '@/components/ProgressItem.vue'
     </ProgressItem>
 
     <!-- Leistungsstufe -->
-    <ProgressItem :value="'advanced'" :title="'Leistungsstufe: 15%'" :color="'orange-800'">
-      <Card class="mt-2 -mb-4 border border-orange-800 rounded-lg">
+    <!-- color: orange-800 -->
+    <ProgressItem
+      :value="'advanced'"
+      :title="'Leistungsstufe'"
+      :color="'neutral-800'"
+      :progress="15"
+    >
+      <Card class="mt-2 -mb-4 border border-neutral-800 rounded-none">
         <CardContent>
           <div class="flex items-center mt-1">
             <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
@@ -180,8 +204,14 @@ import ProgressItem from '@/components/ProgressItem.vue'
     </ProgressItem>
 
     <!-- Überlandfahrt -->
-    <ProgressItem :value="'trip-country'" :title="'Überlandfahrt: 100%'" :color="'yellow-500'">
-      <Card class="mt-2 -mb-4 border border-yellow-500">
+    <!-- color: yellow-500 -->
+    <ProgressItem
+      :value="'trip-country'"
+      :title="'Überlandfahrt'"
+      :color="'neutral-800'"
+      :progress="100"
+    >
+      <Card class="mt-2 -mb-4 border border-neutral-800 rounded-none">
         <CardContent>
           <div class="flex items-center">
             <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
@@ -240,8 +270,14 @@ import ProgressItem from '@/components/ProgressItem.vue'
     </ProgressItem>
 
     <!-- Autobahnfahrt -->
-    <ProgressItem :value="'trip-highway'" :title="'Autobahnfahrt: 100%'" :color="'yellow-500'">
-      <Card class="mt-2 -mb-4 border border-yellow-500">
+    <!-- color: yellow-500 -->
+    <ProgressItem
+      :value="'trip-highway'"
+      :title="'Autobahnfahrt'"
+      :color="'neutral-800'"
+      :progress="100"
+    >
+      <Card class="mt-2 -mb-4 border border-neutral-800 rounded-none">
         <CardContent>
           <div class="flex items-center">
             <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
@@ -304,8 +340,14 @@ import ProgressItem from '@/components/ProgressItem.vue'
     </ProgressItem>
 
     <!-- Nachtfahrt -->
-    <ProgressItem :value="'trip-night'" :title="'Nachtfahrt: 100%'" :color="'yellow-500'">
-      <Card class="mt-2 -mb-4 border rounded-lg border-yellow-500">
+    <!-- color: yellow-500 -->
+    <ProgressItem
+      :value="'trip-night'"
+      :title="'Nachtfahrt'"
+      :color="'neutral-800'"
+      :progress="100"
+    >
+      <Card class="mt-2 -mb-4 border rounded-none border-neutral-800">
         <CardContent>
           <div class="flex items-center">
             <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
@@ -340,8 +382,14 @@ import ProgressItem from '@/components/ProgressItem.vue'
     </ProgressItem>
 
     <!-- Reife- und Teststufe -->
-    <ProgressItem :value="'maturation'" :title="'Reife- und Teststufe: 15%'" :color="'green-400'">
-      <Card class="mt-2 -mb-4 border border-green-400">
+    <!-- color: green-400 -->
+    <ProgressItem
+      :value="'maturation'"
+      :title="'Reife- und Teststufe'"
+      :color="'neutral-800'"
+      :progress="15"
+    >
+      <Card class="mt-2 -mb-4 border border-neutral-800 rounded-none">
         <CardContent>
           <div class="flex items-center">
             <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
@@ -368,8 +416,14 @@ import ProgressItem from '@/components/ProgressItem.vue'
     </ProgressItem>
 
     <!-- Situative Bausteine -->
-    <ProgressItem :value="'situational'" :title="'Situative Bausteine: 9%'" :color="'blue-500'">
-      <Card class="mt-2 border border-blue-500">
+    <!-- color: blue-500 -->
+    <ProgressItem
+      :value="'situational'"
+      :title="'Situative Bausteine'"
+      :color="'neutral-800'"
+      :progress="9"
+    >
+      <Card class="mt-2 border border-neutral-800 rounded-none">
         <CardHeader>
           <CardTitle class="text-lg">Checkliste zur fahrtechnischen Vorbereitung</CardTitle>
         </CardHeader>
@@ -414,7 +468,7 @@ import ProgressItem from '@/components/ProgressItem.vue'
           </div>
         </CardContent>
       </Card>
-      <Card class="mt-2 border border-blue-500">
+      <Card class="mt-2 border border-neutral-800 rounded-none">
         <CardHeader>
           <CardTitle class="text-lg"> Heizung und Lüftung </CardTitle>
         </CardHeader>
@@ -429,7 +483,7 @@ import ProgressItem from '@/components/ProgressItem.vue'
           </div>
         </CardContent>
       </Card>
-      <Card class="mt-2 border border-blue-500">
+      <Card class="mt-2 border border-neutral-800 rounded-none">
         <CardHeader>
           <CardTitle class="text-lg">Betriebs- und Verkehrssicherheit</CardTitle>
         </CardHeader>
@@ -460,7 +514,7 @@ import ProgressItem from '@/components/ProgressItem.vue'
           </div>
         </CardContent>
       </Card>
-      <Card class="mt-2 border border-blue-500">
+      <Card class="mt-2 border border-neutral-800 rounded-none">
         <CardHeader>
           <CardTitle class="text-lg">Witterung</CardTitle>
         </CardHeader>

@@ -10,6 +10,10 @@ import {
   ChartLine,
   Building,
   Settings,
+  MessageSquareHeart,
+  MessageCircleQuestion,
+  LucideMessageCircleQuestion
+
 } from 'lucide-vue-next'
 import type { FunctionalComponent } from 'vue'
 
@@ -52,7 +56,7 @@ export const useSidebarStore = defineStore('sidebar', () => {
         items: [
           {
             title: 'Übersicht',
-            route: 'students',
+            route: 'home',
             icon: LayoutGrid,
           },
         ],
@@ -109,6 +113,11 @@ export const useSidebarStore = defineStore('sidebar', () => {
             title: 'Einstellungen',
             route: 'settings',
             icon: Settings,
+          },
+          {
+            title: 'Feedback',
+            route: 'feedback',
+            icon: MessageSquareHeart,
           },
         ],
       },
