@@ -1,6 +1,7 @@
-import { ref } from 'vue'
+import { ref, shallowRef } from 'vue'
 import { defineStore } from 'pinia'
 import type { Instructor } from '@/types'
+import type { CalendarEventExternal } from '@schedule-x/calendar'
 
 export const useInstructorStore = defineStore('instructor', () => {
   //mock
@@ -16,7 +17,10 @@ export const useInstructorStore = defineStore('instructor', () => {
     licensesTaught: 'B, BE, B96',
   })
 
+  const events = shallowRef<CalendarEventExternal[] | undefined>([])
+
   return {
     selectedInstructor,
+    events,
   }
 })

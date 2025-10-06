@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import { Info, CalendarCheck, GraduationCap } from 'lucide-vue-next'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent } from '@/components/ui/card'
@@ -7,13 +8,32 @@ import InstructorInfo from '@/components/InstructorInfo.vue'
 import type { Instructor } from '@/types'
 import { useInstructorStore } from '@/stores/instructorStore'
 
+import TeacherDrivingSchedule from '@/components/TeacherDrivingSchedule.vue'
+
+import DataTable from '@/components/ui/data-table.vue'
+import mockStudents from '@/stores/mockStudents'
+import type { Student } from '@/types'
+import { StudentColumns } from '@/columns'
+
 const props = defineProps<{
-	instructorId: string
+  instructorId: string
 }>()
 
 const instructorStore = useInstructorStore()
 const mockInstructor = instructorStore.selectedInstructor as Instructor
 console.log(props.instructorId)
+
+const data = ref<Student[]>([])
+async function getData(): Promise<Student[]> {
+  await new Promise((resolve) => setTimeout(resolve, 500)) // TODO: remove
+  return mockStudents
+}
+onMounted(async () => {
+  data.value = await getData()
+})
+function selectStudent() {
+	console.log("stub")
+}
 </script>
 
 <template>
@@ -44,7 +64,12 @@ console.log(props.instructorId)
       <TabsContent value="info">
         <InstructorInfo :data="mockInstructor" />
       </TabsContent>
-      <TabsContent value="plan"> </TabsContent>
+      <TabsContent value="plan">
+        <TeacherDrivingSchedule />
+      </TabsContent>
+      <TabsContent value="students">
+        <DataTable :columns="StudentColumns" :data="data" :row-select="selectStudent" />
+      </TabsContent>
     </Tabs>
   </div>
 </template>
