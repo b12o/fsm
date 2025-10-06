@@ -6,7 +6,7 @@ import { Info, CalendarCheck, ListChecks, NotebookPen } from 'lucide-vue-next'
 import { Card, CardContent } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import StudentInfo from '@/components/StudentInfo.vue'
-import DrivingSchedule from '@/components/DrivingSchedule.vue'
+import StudentDrivingSchedule from '@/components/StudentDrivingSchedule.vue'
 import LearningProgress from '@/components/LearningProgress.vue'
 
 type Props = {
@@ -60,7 +60,7 @@ console.log(props.studentId)
         <StudentInfo :data="mockStudent" />
       </TabsContent>
       <TabsContent value="plan">
-        <DrivingSchedule />
+        <StudentDrivingSchedule />
       </TabsContent>
       <TabsContent value="progress">
         <LearningProgress />
