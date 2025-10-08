@@ -5,7 +5,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import InstructorInfo from '@/components/InstructorInfo.vue'
-import type { Instructor } from '@/types'
 import { useInstructorStore } from '@/stores/instructorStore'
 
 import TeacherDrivingSchedule from '@/components/TeacherDrivingSchedule.vue'
@@ -20,13 +19,13 @@ const props = defineProps<{
 }>()
 
 const instructorStore = useInstructorStore()
-const mockInstructor = instructorStore.selectedInstructor as Instructor
+const mockInstructor = instructorStore.selectedInstructor
 console.log(props.instructorId)
 
 const data = ref<Student[]>([])
 async function getData(): Promise<Student[]> {
   await new Promise((resolve) => setTimeout(resolve, 500)) // TODO: remove
-  return mockStudents
+  return mockStudents.slice(0, 8)
 }
 onMounted(async () => {
   data.value = await getData()
