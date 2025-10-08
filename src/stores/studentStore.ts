@@ -10,7 +10,7 @@ export const useStudentStore = defineStore('student', () => {
     // TODO: get from DB
     Grundstufe: {
       completionPercentage: 0,
-      'Besonderheitem beim Einsteigen': false,
+      'Besonderheiten beim Einsteigen': false,
       Einstellen: false,
       Lenkradhaltung: false,
       Pedale: false,
@@ -35,7 +35,7 @@ export const useStudentStore = defineStore('student', () => {
       'Abbremsen und Schalten': false,
       Bremsübungen: false,
       Tastgeschwindigkeit: false,
-      'Bedienungs und Kontrolleinrichtungen': false,
+      'Bedienungs- und Kontrolleinrichtungen': false,
       'Örtliche Besonderheiten': false,
     },
     Leistungsstufe: {
@@ -54,9 +54,9 @@ export const useStudentStore = defineStore('student', () => {
       'Kritische Verkehrssituationen': false,
       'Fußgänger Schutzbereich': false,
     },
-    Überlandfahr: {
+    Überlandfahrt: {
       completionPercentage: 0,
-      Angepasste: false,
+      'Angepasste Geschwindigkeit / Gangwahl (alle Gänge)': false,
       Abstand: false,
       'Beobachtung / Spiegel': false,
       Verkehrszeichen: false,
@@ -71,15 +71,15 @@ export const useStudentStore = defineStore('student', () => {
     },
     Autobahnfahrt: {
       completionPercentage: 0,
-      Fahrplanung: false,
+      Fahrtplanung: false,
       'Einfahren in Bundesautobahn (BAB)': false,
       Fahrstreifenwechsel: false,
       Geschwindigkeit: false,
       Abstand: false,
       Überholen: false,
-      'Schilder / Merkierungen': false,
+      'Schilder / Markierungen': false,
       'Vorbeifahren / Anschlussstellen': false,
-      'Rest- / Parkplätze, Tankstelen': false,
+      'Rest- / Parkplätze, Tankstellen': false,
       'Verhalten bei Unfällen': false,
       'Dichter Verkehr / Stau': false,
       'Besondere Situationen': false,
@@ -100,7 +100,7 @@ export const useStudentStore = defineStore('student', () => {
       completionPercentage: 0,
       'Selbstständiges Fahren': false,
       'Verantwortungsbewusstes Fahren': false,
-      'Testfahrt under Prüfungsbedingungen': false,
+      'Testfahrt unter Prüfungsbedingungen': false,
       'Wiederholung / Vertiefung': false,
       Leistungsbewertung: false,
     },
