@@ -32,7 +32,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <DataTable :columns="InstructorColumns" :data="data" :row-select="selectInstructor" />
+  <div>
+    <DataTable :columns="InstructorColumns" :data="data" :row-select="selectInstructor" />
+  </div>
 </template>
 
 <style scoped></style>

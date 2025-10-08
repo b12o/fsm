@@ -21,55 +21,57 @@ console.log(props.studentId)
 </script>
 
 <template>
-  <Card class="rounded-none">
-    <CardContent>
-      <div class="flex flex-row">
-        <Avatar class="h-24 w-24">
-          <AvatarImage src="https://i.postimg.cc/P5NtqzVy/www-thispersondoesnotexist.jpg" />
-          <AvatarFallback>MM</AvatarFallback>
-        </Avatar>
-        <div class="ml-8">
-          <h1 class="text-3xl">Maria Mustermann</h1>
-          <h4>Fahrschüler:in</h4>
-          <h4>Berlin, DE</h4>
+  <div>
+    <Card class="rounded-none">
+      <CardContent>
+        <div class="flex flex-row">
+          <Avatar class="h-24 w-24">
+            <AvatarImage src="https://i.postimg.cc/P5NtqzVy/www-thispersondoesnotexist.jpg" />
+            <AvatarFallback>MM</AvatarFallback>
+          </Avatar>
+          <div class="ml-8">
+            <h1 class="text-3xl">Maria Mustermann</h1>
+            <h4>Fahrschüler:in</h4>
+            <h4>Berlin, DE</h4>
+          </div>
         </div>
-      </div>
-    </CardContent>
-  </Card>
-  <div class="flex flex-col mt-4">
-    <Tabs default-value="info">
-      <TabsList class="flex justify-between w-full mb-2 rounded-none">
-        <TabsTrigger value="info" class="rounded-none">
-          <Info />
-          Details
-        </TabsTrigger>
-        <TabsTrigger value="plan" class="rounded-none">
-          <CalendarCheck />
-          Fahrplan
-        </TabsTrigger>
-        <TabsTrigger value="progress" class="rounded-none">
-          <ListChecks />
-          Fortschritt
-        </TabsTrigger>
-        <TabsTrigger value="protocol" class="rounded-none">
-          <NotebookPen />
-          Notizen
-        </TabsTrigger>
-      </TabsList>
-      <TabsContent value="info">
-        <StudentInfo :data="mockStudent" />
-      </TabsContent>
-      <TabsContent value="plan">
-        <StudentDrivingSchedule />
-      </TabsContent>
-      <TabsContent value="progress">
-        <LearningProgress />
-      </TabsContent>
-      <TabsContent value="protocol">
-        <Card class="rounded-none">
-          <CardContent class="italic">Noch keine notizen</CardContent>
-        </Card>
-      </TabsContent>
-    </Tabs>
+      </CardContent>
+    </Card>
+    <div class="flex flex-col mt-4">
+      <Tabs default-value="info">
+        <TabsList class="flex justify-between w-full mb-2 rounded-none">
+          <TabsTrigger value="info" class="rounded-none">
+            <Info />
+            Details
+          </TabsTrigger>
+          <TabsTrigger value="plan" class="rounded-none">
+            <CalendarCheck />
+            Fahrplan
+          </TabsTrigger>
+          <TabsTrigger value="progress" class="rounded-none">
+            <ListChecks />
+            Fortschritt
+          </TabsTrigger>
+          <TabsTrigger value="protocol" class="rounded-none">
+            <NotebookPen />
+            Notizen
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="info">
+          <StudentInfo :data="mockStudent" />
+        </TabsContent>
+        <TabsContent value="plan">
+          <StudentDrivingSchedule />
+        </TabsContent>
+        <TabsContent value="progress">
+          <LearningProgress />
+        </TabsContent>
+        <TabsContent value="protocol">
+          <Card class="rounded-none">
+            <CardContent class="italic">Noch keine notizen</CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
   </div>
 </template>

@@ -37,7 +37,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <DataTable :columns="StudentColumns" :data="data" :row-select="selectStudent" />
+  <div>
+    <DataTable :columns="StudentColumns" :data="data" :row-select="selectStudent" />
+  </div>
 </template>
 
 <style scoped></style>

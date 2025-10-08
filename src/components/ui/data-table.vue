@@ -63,13 +63,13 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="flex items-center py-4">
+    <div class="flex items-center pb-4">
       <span class="absolute start-2 flex items-center justify-center px-2">
         <Search class="size-5 text-muted-foreground ml-2" />
       </span>
       <Input
         id="data-table-search-input"
-        class="max-w-sm pl-8 rounded-none"
+        class="max-w-sm pl-10 rounded-none"
         placeholder="Suche"
         @update:model-value="table.setGlobalFilter($event)"
       />
@@ -113,7 +113,7 @@ onMounted(() => {
     <div class="flex items-center justify-center py-4 space-x-2">
       <Button
         variant="outline"
-				class="rounded-none"
+        class="rounded-none"
         size="sm"
         :disabled="!table.getCanPreviousPage()"
         @click="table.previousPage()"
@@ -122,7 +122,7 @@ onMounted(() => {
       </Button>
       <Button
         variant="outline"
-				class="rounded-none"
+        class="rounded-none"
         size="sm"
         :disabled="!table.getCanNextPage()"
         @click="table.nextPage()"
