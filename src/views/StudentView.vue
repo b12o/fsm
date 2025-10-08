@@ -38,7 +38,7 @@ console.log(props.studentId)
       </CardContent>
     </Card>
     <div class="flex flex-col mt-4">
-      <Tabs default-value="info">
+      <Tabs default-value="progress">
         <TabsList class="flex justify-between w-full mb-2 rounded-none">
           <TabsTrigger value="info" class="rounded-none">
             <Info />

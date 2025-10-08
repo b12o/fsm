@@ -26,3 +26,24 @@ export type Instructor = {
   preferredVehicleId: string
   licensesTaught: string
 }
+
+/*
+{
+  "Grundstufe": {
+    "Besonderheiten beim Einsteigen": true
+    "Einstellen": false,
+    ...,
+    "Schalt-/Wählhebel": true
+  },
+  "Aufbaustufe": {...},
+  ...
+  "Situative Bausteine": {...}
+}
+*/
+export type PhaseItem = {
+  completionPercentage: number
+  [item: string]: boolean | number // union type to account for explicit 'progress' key that isn't a string
+}
+export type LearningProgress = {
+  [phase: string]: PhaseItem
+}

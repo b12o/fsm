@@ -1,10 +1,131 @@
-import { ref, shallowRef, computed } from 'vue'
+import { ref, shallowRef, computed, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import type { CalendarEventExternal } from '@schedule-x/calendar'
-import type { Student } from '@/types'
+import type { Student, LearningProgress } from '@/types'
 
 export const useStudentStore = defineStore('student', () => {
   const LESSON_HOUR = 40
+
+  const studentLearningProgress = reactive<LearningProgress>({
+    // TODO: get from DB
+    Grundstufe: {
+      completionPercentage: 0,
+      'Besonderheitem beim Einsteigen': false,
+      Einstellen: false,
+      Lenkradhaltung: false,
+      Pedale: false,
+      'Gurt anlegen / anpassen': false,
+      'Schalt- / Wählhebel': false,
+      Zündschloss: false,
+      'Motor anlassen': false,
+      'Anfahr- / Anhalteübungen': false,
+      'Schaltübungen (umweltschonend)': false,
+    },
+    Grundfahraufgaben: {
+      completionPercentage: 0,
+      Rückwärtsfahren: false,
+      Umkehren: false,
+      Gefahrenbremsung: false,
+      'Einparken längs': false,
+      'Einparken quer': false,
+    },
+    Aufbaustufe: {
+      completionPercentage: 0,
+      'Rollen und Schalten': false,
+      'Abbremsen und Schalten': false,
+      Bremsübungen: false,
+      Tastgeschwindigkeit: false,
+      'Bedienungs und Kontrolleinrichtungen': false,
+      'Örtliche Besonderheiten': false,
+    },
+    Leistungsstufe: {
+      completionPercentage: 0,
+      Fahrbahnbenutzung: false,
+      Fahrstreifenwechsel: false,
+      'Vorbeifahren / Überholen': false,
+      Abbiegen: false,
+      Vorfahrt: false,
+      'Geschwindigkeit / Abstand': false,
+      'Situationen mit anderen Verkehrsteilnehmern': false,
+      'Schwierige Verkehrsführung': false,
+      Engpass: false,
+      Kreisverkehr: false,
+      'Bahnübergang (warten)': false,
+      'Kritische Verkehrssituationen': false,
+      'Fußgänger Schutzbereich': false,
+    },
+    Überlandfahr: {
+      completionPercentage: 0,
+      Angepasste: false,
+      Abstand: false,
+      'Beobachtung / Spiegel': false,
+      Verkehrszeichen: false,
+      'Kreuzungen / Einmündungen': false,
+      Kurven: false,
+      Steigungen: false,
+      Gefälle: false,
+      Alleen: false,
+      Überholen: false,
+      'Besondere Situationen': false,
+      'Besondere Anforderungen': false,
+    },
+    Autobahnfahrt: {
+      completionPercentage: 0,
+      Fahrplanung: false,
+      'Einfahren in Bundesautobahn (BAB)': false,
+      Fahrstreifenwechsel: false,
+      Geschwindigkeit: false,
+      Abstand: false,
+      Überholen: false,
+      'Schilder / Merkierungen': false,
+      'Vorbeifahren / Anschlussstellen': false,
+      'Rest- / Parkplätze, Tankstelen': false,
+      'Verhalten bei Unfällen': false,
+      'Dichter Verkehr / Stau': false,
+      'Besondere Situationen': false,
+      'Besondere Anforderungen': false,
+      'Verlassen der Bundesautobahn (BAB)': false,
+    },
+    Nachtfahrt: {
+      completionPercentage: 0,
+      Beleuchtung: false,
+      'Beleuchtete Straßen': false,
+      'Unbeleuchtete Straßen': false,
+      Parken: false,
+      'Besondere Situationen': false,
+      'Besondere Anforderungen': false,
+      Abschlussbesprechung: false,
+    },
+    'Reife- und Teststufe': {
+      completionPercentage: 0,
+      'Selbstständiges Fahren': false,
+      'Verantwortungsbewusstes Fahren': false,
+      'Testfahrt under Prüfungsbedingungen': false,
+      'Wiederholung / Vertiefung': false,
+      Leistungsbewertung: false,
+    },
+    'Situative Bausteine': {
+      completionPercentage: 0,
+      'Scheinwerfer, Leuchten, Blinker, Hupe': false,
+      'Funktionsprüfung der Lichter / Leuchten': false,
+      'Kontrollleuchten benennen': false,
+      Rückstrahler: false,
+      Lenkung: false,
+      'Funktionsprüfung der Bremsen': false,
+      'Richtige Sitzeinstellung': false,
+      'Einstellung der Rückspiegel': false,
+      'Anlegen des Sicherheitsgurtes': false,
+      'Bedienen der Aggregate': false,
+      'Energiesparende Nutzung': false,
+      'Motorraum / Flüssigkeitsstände': false,
+      Tanken: false,
+      Sicherungsmittel: false,
+      Außenkontrolle: false,
+      Bremsen: false,
+      Ladung: false,
+      'Fahren bei schlechter Witterung': false,
+    },
+  })
 
   //mock
   const selectedStudent = ref<Student>({
@@ -84,5 +205,6 @@ export const useStudentStore = defineStore('student', () => {
     notifyOpenDialog,
     notifyCloseDialog,
     notifySaveLesson,
+    studentLearningProgress,
   }
 })

@@ -3,6 +3,13 @@ import { Accordion } from '@/components/ui/accordion'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import ProgressItem from '@/components/ProgressItem.vue'
+
+import { useStudentStore } from '@/stores/studentStore'
+
+const studentStore = useStudentStore()
+function handleCheckboxChange(checked: boolean | string) {
+  console.log(checked)
+}
 </script>
 
 <template>
@@ -19,48 +26,112 @@ import ProgressItem from '@/components/ProgressItem.vue'
       <Card class="mt-2 -mb-4 border border-neutral-800 rounded-none bg-neutral-900 text-white">
         <CardContent>
           <div class="flex items-center">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
+            <Checkbox
+              class="rounded-lg border border-neutral-500 mr-4 cursor-pointer"
+              v-model:modelValue="
+                studentStore.studentLearningProgress['Grundstufe'][
+                  'Besonderheiten beim Einsteigen'
+                ] as boolean
+              "
+              @update:modelValue="handleCheckboxChange"
+            />
             <p class="text-lg">Besonderheiten beim Einsteigen</p>
           </div>
           <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
+            <Checkbox
+              class="rounded-lg border border-neutral-500 mr-4 cursor-pointer"
+              v-model:modelValue="
+                studentStore.studentLearningProgress['Grundstufe']['Einstellen'] as boolean
+              "
+              @update:modelValue="handleCheckboxChange"
+            />
             <p class="text-lg">Einstellen</p>
           </div>
           <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
+            <Checkbox
+              class="rounded-lg border border-neutral-500 mr-4 cursor-pointer"
+              v-model:modelValue="
+                studentStore.studentLearningProgress['Grundstufe']['Lenkradhaltung'] as boolean
+              "
+              @update:modelValue="handleCheckboxChange"
+            />
             <p class="text-lg">Lenkradhaltung</p>
           </div>
           <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
+            <Checkbox
+              class="rounded-lg border border-neutral-500 mr-4 cursor-pointer"
+              v-model:modelValue="
+                studentStore.studentLearningProgress['Grundstufe']['Pedale'] as boolean
+              "
+              @update:modelValue="handleCheckboxChange"
+            />
             <p class="text-lg">Pedale</p>
           </div>
           <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
+            <Checkbox
+              class="rounded-lg border border-neutral-500 mr-4 cursor-pointer"
+              v-model:modelValue="
+                studentStore.studentLearningProgress['Grundstufe'][
+                  'Gurt anlegen / anpassen'
+                ] as boolean
+              "
+              @update:modelValue="handleCheckboxChange"
+            />
             <p class="text-lg">Gurt anlegen / anpassen</p>
           </div>
           <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
+            <Checkbox
+              class="rounded-lg border border-neutral-500 mr-4 cursor-pointer"
+              v-model:modelValue="
+                studentStore.studentLearningProgress['Grundstufe']['Schalt- / Wählhebel'] as boolean
+              "
+              @update:modelValue="handleCheckboxChange"
+            />
             <p class="text-lg">Schalt- / Wählhebel</p>
           </div>
           <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
+            <Checkbox
+              class="rounded-lg border border-neutral-500 mr-4 cursor-pointer"
+              v-model:modelValue="
+                studentStore.studentLearningProgress['Grundstufe']['Zündschloss'] as boolean
+              "
+              @update:modelValue="handleCheckboxChange"
+            />
             <p class="text-lg">Zündschloss</p>
           </div>
           <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
+            <Checkbox
+              class="rounded-lg border border-neutral-500 mr-4 cursor-pointer"
+              v-model:modelValue="
+                studentStore.studentLearningProgress['Grundstufe']['Motor anlassen'] as boolean
+              "
+              @update:modelValue="handleCheckboxChange"
+            />
             <p class="text-lg">Motor anlassen</p>
           </div>
           <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
+            <Checkbox
+              class="rounded-lg border border-neutral-500 mr-4 cursor-pointer"
+              v-model:modelValue="
+                studentStore.studentLearningProgress['Grundstufe'][
+                  'Anfahr- / Anhalteübungen'
+                ] as boolean
+              "
+              @update:modelValue="handleCheckboxChange"
+            />
             <p class="text-lg">Anfahr- / Anhalteübungen</p>
           </div>
           <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
+            <Checkbox
+              class="rounded-lg border border-neutral-500 mr-4 cursor-pointer"
+              v-model:modelValue="
+                studentStore.studentLearningProgress['Grundstufe'][
+                  'Schaltübungen (umweltschonend)'
+                ] as boolean
+              "
+              @update:modelValue="handleCheckboxChange"
+            />
             <p class="text-lg">Schaltübungen (umweltschonend)</p>
-          </div>
-          <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
-            <p class="text-lg">Schalt- / Wählhebel</p>
           </div>
         </CardContent>
       </Card>
@@ -236,10 +307,6 @@ import ProgressItem from '@/components/ProgressItem.vue'
           <div class="flex items-center mt-1">
             <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
             <p class="text-lg">Kurven</p>
-          </div>
-          <div class="flex items-center mt-1">
-            <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
-            <p class="text-lg">Steigungen</p>
           </div>
           <div class="flex items-center mt-1">
             <Checkbox class="rounded-lg border border-neutral-500 mr-4" />
