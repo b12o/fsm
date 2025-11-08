@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import InstructorInfo from '@/components/InstructorInfo.vue'
 import { useInstructorStore } from '@/stores/instructorStore'
 
-import TeacherDrivingSchedule from '@/components/TeacherDrivingSchedule.vue'
+import InstructorDrivingSchedule from '@/components/InstructorDrivingSchedule.vue'
 
 import DataTable from '@/components/ui/data-table.vue'
 import mockStudents from '@/stores/mockStudents'
@@ -65,7 +65,7 @@ function selectStudent() {
           <InstructorInfo :data="mockInstructor" />
         </TabsContent>
         <TabsContent value="plan">
-          <TeacherDrivingSchedule />
+          <InstructorDrivingSchedule />
         </TabsContent>
         <TabsContent value="students">
           <DataTable :columns="StudentColumns" :data="data" :row-select="selectStudent" />

@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { toast } from 'vue-sonner'
 import { ScheduleXCalendar } from '@schedule-x/vue'
 import { createEventsServicePlugin } from '@schedule-x/events-service'
 import { createDragAndDropPlugin } from '@schedule-x/drag-and-drop'
 import { createCurrentTimePlugin } from '@schedule-x/current-time'
-import {
-  createCalendar,
-  createViewDay,
-  createViewMonthGrid,
-  createViewWeek,
-} from '@schedule-x/calendar'
+import { createCalendar, createViewWeek } from '@schedule-x/calendar'
 
 import { type CalendarEvent } from '@schedule-x/calendar'
 import '@schedule-x/theme-default/dist/index.css'
@@ -34,7 +29,7 @@ const calendarApp = createCalendar({
     start: '06:00',
     end: '23:00',
   },
-  views: [createViewDay(), createViewWeek(), createViewMonthGrid()],
+  views: [createViewWeek()],
   plugins: [createDragAndDropPlugin(), createCurrentTimePlugin(), eventsServicePlugin],
   weekOptions: {
     nDays: 6,
@@ -113,10 +108,19 @@ function saveLesson() {
   // TODO save to DB
   studentStore.notifyCloseDialog = true
 }
+
+const scheduleInvisible = ref<boolean>(true)
+onMounted(async () => {
+  await new Promise(() =>
+    setTimeout(() => {
+      scheduleInvisible.value = false
+    }, 100),
+  )
+})
 </script>
 
 <template>
-  <ScheduleXCalendar :calendar-app="calendarApp"/>
+  <ScheduleXCalendar :class="{ hidden: scheduleInvisible }" :calendar-app="calendarApp" />
   <LessonDialog />
 </template>
 
@@ -135,6 +139,6 @@ function saveLesson() {
 .sx__calendar {
   border: 1px solid var(--color-neutral-800);
   margin-bottom: 0;
-	border-radius: 0;
+  border-radius: 0;
 }
 </style>
