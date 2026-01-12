@@ -104,7 +104,7 @@ function saveLesson() {
   studentStore.studentLessons?.push(newLesson)
 
   studentStore.notifyCloseDialog = true
-  toast('Fahrstunde wurde erstellt!')
+  toast.success('Fahrstunde wurde erstellt!')
   // TODO save to DB
   studentStore.notifyCloseDialog = true
 }
@@ -129,13 +129,16 @@ onMounted(async () => {
   width: 100%;
   height: calc(100vh - 18rem);
 }
+
 .sx__current-time-indicator {
   height: 1px;
   border: 1px solid var(--color-neutral-400);
 }
+
 .sx__current-time-indicator::before {
   background-color: var(--color-neutral-400);
 }
+
 .sx__calendar {
   border: 1px solid var(--color-neutral-800);
   margin-bottom: 0;
