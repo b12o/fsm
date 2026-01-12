@@ -11,9 +11,6 @@ import {
   Building,
   Settings,
   MessageSquareHeart,
-  MessageCircleQuestion,
-  LucideMessageCircleQuestion
-
 } from 'lucide-vue-next'
 import type { FunctionalComponent } from 'vue'
 

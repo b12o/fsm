@@ -27,6 +27,25 @@ export type Instructor = {
   licensesTaught: string
 }
 
+export type Vehicle = {
+  id: string
+  make: string
+  model: string
+  year: number
+  licensePlate: string
+  vin: string
+  transmission: 'manual' | 'automatic'
+  fuelType: 'gasoline' | 'diesel' | 'electric' | 'hybrid'
+  color: string
+  mileage: number
+  status: 'active' | 'maintenance' | 'inactive'
+  lastService: string
+  nextService: string
+  insuranceExpiry: string
+  registrationExpiry: string
+  drivingSchoolId: string
+}
+
 /*
 {
   "Grundstufe": {

@@ -26,7 +26,6 @@ import SidebarToggle from '@/components/SidebarToggle.vue'
 import { useSidebarStore } from '@/stores/sidebarStore'
 
 const store = useSidebarStore()
-
 </script>
 
 <template>

@@ -18,7 +18,10 @@ const props = defineProps<Props>()
 
 <template>
   <AccordionItem :value="props.value">
-    <AccordionTrigger class="text-white bg-neutral-900 text-xl px-4 mt-2 rounded-none" :class="borderColor">
+    <AccordionTrigger
+      class="text-white bg-neutral-900 text-xl px-4 mt-2 rounded-none"
+      :class="borderColor"
+    >
       <div class="w-72">
         {{ props.title }}
       </div>

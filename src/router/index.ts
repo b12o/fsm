@@ -6,6 +6,7 @@ import InstructorsOverview from '@/views/InstructorsOverview.vue'
 import InstructorView from '@/views/InstructorView.vue'
 
 import VehiclesOverview from '@/views/VehiclesOverview.vue'
+import VehicleView from '@/views/VehicleView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,11 +36,18 @@ const router = createRouter({
       path: '/instructors/:instructorId',
       name: 'instructor',
       component: InstructorView,
+      props: true,
     },
     {
       path: '/vehicles',
       name: 'vehicles',
       component: VehiclesOverview,
+    },
+    {
+      path: '/vehicle/:vehicleId',
+      name: 'vehicle',
+      component: VehicleView,
+      props: true,
     },
     {
       path: '/:notFound(.*)',
