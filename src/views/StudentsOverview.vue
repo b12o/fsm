@@ -13,8 +13,9 @@ const router = useRouter()
 // const store = useStore()
 
 const data = ref<Student[]>([])
-async function getData(): Promise<Student[]> {
-  await new Promise((resolve) => setTimeout(resolve, 500)) // TODO: remove
+
+async function fetchStudentsFromDB(): Promise<Student[]> {
+  await new Promise((resolve) => setTimeout(resolve, 500))
   return mockStudents
 }
 
@@ -32,7 +33,7 @@ function selectStudent(row: Row<Student>) {
 }
 
 onMounted(async () => {
-  data.value = await getData()
+  data.value = await fetchStudentsFromDB()
 })
 </script>
 
